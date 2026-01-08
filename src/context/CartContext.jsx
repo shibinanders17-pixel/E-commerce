@@ -14,14 +14,8 @@ export default function CartProvider({ children }) {
   }, [cart]);
 
   const addToCart = (product) => {
-    setCart(prev => {
-      const existing = prev.some(item => item.id === product.id);
-
-      if (existing)
-        return prev;
-
-      return [...prev, { ...product, qty: 1 }];
-    });
+    setCart(prev => 
+        [...prev, { ...product, qty: 1 }]);
   };
 
   const removeFromCart = (id) => {
