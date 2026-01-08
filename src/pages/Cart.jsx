@@ -1,8 +1,12 @@
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router-dom"
 import "./Cart.css";
 
 export default function Cart() {
+
+  const navigate  = useNavigate();
+
   const {
     cart,
     removeFromCart,
@@ -18,6 +22,12 @@ export default function Cart() {
   if (cart.length === 0) {
     return <h2 style={{ padding: "20px", textAlign:"center"}}>Your cart is empty 🛒</h2>;
   }
+
+  const handleBuyNow = (item) => {
+    navigate("/checkout", {
+      state : {product : item}
+    });
+  }; 
 
   return (
     <div className="cart-page">
@@ -48,8 +58,10 @@ export default function Cart() {
               </p>
 
               <button onClick={() => removeFromCart(item.id)}>
-                Remove ❌
+                Remove ❌ {""}
               </button>
+             
+              <button onClick={()=> handleBuyNow(item)} > Buy Now </button>
             </div>
           </div>
         );

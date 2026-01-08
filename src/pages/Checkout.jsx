@@ -42,7 +42,7 @@ const [paymentMethod, setPaymentMethod] = useState("");
       <h2>{product.name}</h2>
 
    
-      <h3>Price: ₹ {product.price.toLocaleString("en-IN")}</h3>
+      <h3>Price: ₹ {(product.price * (product.qty || 1)).toLocaleString("en-IN")}</h3>
       
       <hr />
       <br />
