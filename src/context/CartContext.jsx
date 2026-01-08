@@ -4,18 +4,15 @@ export const CartContext = createContext();
 
 export default function CartProvider({ children }) {
 
-  // 1️⃣ LOAD CART FROM LOCALSTORAGE
   const [cart, setCart] = useState(() => {
     const savedCart = localStorage.getItem("cart");
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-  // 2️⃣ SAVE CART TO LOCALSTORAGE WHENEVER CART CHANGES
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
-  // 🛒 ADD TO CART 
   const addToCart = (product) => {
     setCart(prev => {
       const existing = prev.find(item => item.id === product.id);
@@ -32,12 +29,10 @@ export default function CartProvider({ children }) {
     });
   };
 
-  // ❌ REMOVE ITEM FULLY
   const removeFromCart = (id) => {
     setCart(prev => prev.filter(item => item.id !== id));
   };
 
-  // ➕ INCREASE QTY
   const increaseQty = (id) => {
     setCart(prev =>
       prev.map(item =>
@@ -46,7 +41,6 @@ export default function CartProvider({ children }) {
     );
   };
 
-  // ➖ DECREASE QTY
   const decreaseQty = (id) => {
     setCart(prev =>
       prev
