@@ -38,27 +38,57 @@
     },
     {
       "id": 7,
-      "name": "Smart-Watch",
-      "price": 5000,
-      "image": "http://localhost:5000/images/Smart-watch.webp"
+      "name": "Umidigi-5G",
+      "price": 25000,
+      "image": "http://localhost:5000/images/Umidigi-5G.webp"
     },
     {
       "id": 8,
-      "name": "Mi-PowerBank 1000mAh",
-      "price": 2000,
-      "image": "http://localhost:5000/images/Mi-powerbank.webp"
+      "name": "Poco-m7-pro",
+      "price": 22000,
+      "image": "http://localhost:5000/images/Poco-m7-pro.webp"
     },
     {
       "id": 9,
-      "name": "Asus Laptop",
+      "name": "Motorola-5G-stylus",
       "price": 42000,
-      "image": "http://localhost:5000/images/Asus.webp"
+      "image": "http://localhost:5000/images/Motorola-5G-stylus.webp"
     },
     {
       "id": 10,
-      "name": "Earbuds pTron",
-      "price": 1700,
-      "image": "http://localhost:5000/images/Earbuds.webp"
+      "name": "Proma-17-Xn",
+      "price": 21700,
+      "image": "http://localhost:5000/images/Proma-17-X.webp"
+    },
+    {
+      "id": 11,
+      "name": "mi-note14-pro-5g",
+      "price": 31700,
+      "image": "http://localhost:5000/images/mi-note14-pro-5g.webp"
+    },
+    {
+      "id": 12,
+      "name": "iPhone-17-pro-max",
+      "price": 111500,
+      "image": "http://localhost:5000/images/iPhone-17-pro-max.webp"
+    },
+    {
+      "id": 13,
+      "name": "iPhone-17-pro",
+      "price": 87000,
+      "image": "http://localhost:5000/images/iPhone-17-pro.webp"
+    },
+    {
+      "id": 14,
+      "name": "Motorola-G-plus-5G",
+      "price": 27000,
+      "image": "http://localhost:5000/images/Motorola-G-plus-5G.webp"
+    },
+    {
+      "id": 15,
+      "name": "Samsung-galaxy-A16",
+      "price": 42500,
+      "image": "http://localhost:5000/images/Samsung-galaxy-A16.webp"
     }
   ]
 }
