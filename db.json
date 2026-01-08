@@ -1,0 +1,64 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "iPhone 15",
+      "price": 80000,
+      "image": "http://localhost:5000/images/Apple.jpeg"
+    },
+    {
+      "id": 2,
+      "name": "Samsung S24",
+      "price": 65000,
+      "image": "http://localhost:5000/images/Galaxy.jpeg"
+    },
+    {
+      "id": 3,
+      "name": "Moto G 57power",
+      "price": 25000,
+      "image": "http://localhost:5000/images/Moto.jpeg"
+    },
+    {
+      "id": 4,
+      "name": "Mi || Xioami 14",
+      "price": 27000,
+      "image": "http://localhost:5000/images/Mi.webp"
+    },
+    {
+      "id": 5,
+      "name": "Realme 15pro 5G",
+      "price": 18000,
+      "image": "http://localhost:5000/images/Realme.webp"
+    },
+    {
+      "id": 6,
+      "name": "Vivo T4x 5G",
+      "price": 32000,
+      "image": "http://localhost:5000/images/Vivo.jpeg"
+    },
+    {
+      "id": 7,
+      "name": "Smart-Watch",
+      "price": 5000,
+      "image": "http://localhost:5000/images/Smart-watch.webp"
+    },
+    {
+      "id": 8,
+      "name": "Mi-PowerBank 1000mAh",
+      "price": 2000,
+      "image": "http://localhost:5000/images/Mi-powerbank.webp"
+    },
+    {
+      "id": 9,
+      "name": "Asus Laptop",
+      "price": 42000,
+      "image": "http://localhost:5000/images/Asus.webp"
+    },
+    {
+      "id": 10,
+      "name": "Earbuds pTron",
+      "price": 1700,
+      "image": "http://localhost:5000/images/Earbuds.webp"
+    }
+  ]
+}

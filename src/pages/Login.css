@@ -1,0 +1,24 @@
+.login-container {
+  display: flex;
+  flex-direction:column;
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  gap: 15px;
+  align-items: center;
+
+  background-image: url("../assets/95cdfeef.avif");
+  background-size:cover;  
+  background-position: center; 
+  background-repeat: no-repeat;
+}
+
+
+.login-input {
+  padding: 8px;
+}
+
+.login-button {
+  padding: 8px;
+  cursor: pointer;
+}
