@@ -43,8 +43,7 @@ export default function CartProvider({ children }) {
 
   const decreaseQty = (id) => {
     setCart(prev =>
-      prev
-        .map(item =>
+      prev.map(item =>
           item.id === id ? { ...item, qty: item.qty - 1 } : item
         )
         .filter(item => item.qty > 0)

@@ -44,7 +44,6 @@ export default function Cart() {
               <h3>{item.name}</h3>
               <p>₹ {item.price.toLocaleString("en-IN")}</p>
 
-              {/* QTY CONTROLS */}
               <div className="qty-controls">
                 <button onClick={() => decreaseQty(item.id)}>−</button>
                 <span>{item.qty}</span>
@@ -58,7 +57,7 @@ export default function Cart() {
               </p>
 
               <button onClick={() => removeFromCart(item.id)}>
-                Remove ❌ {""}
+                Remove {""}
               </button>
              
               <button onClick={()=> handleBuyNow(item)} > Buy Now </button>
