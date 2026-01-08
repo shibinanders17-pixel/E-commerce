@@ -15,15 +15,10 @@ export default function CartProvider({ children }) {
 
   const addToCart = (product) => {
     setCart(prev => {
-      const existing = prev.find(item => item.id === product.id);
+      const existing = prev.some(item => item.id === product.id);
 
-      if (existing) {
-        return prev.map(item =>
-          item.id === product.id
-            ? { ...item, qty: item.qty + 1 }
-            : item
-        );
-      }
+      if (existing)
+        return prev;
 
       return [...prev, { ...product, qty: 1 }];
     });

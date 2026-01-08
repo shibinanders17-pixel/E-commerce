@@ -29,10 +29,7 @@ export default function Products() {
       return;
     } 
 
-    isInCart
-      ? removeFromCart(product.id)
-      : addToCart(product);
-  };
+    isInCart ? removeFromCart(product.id) : addToCart(product)};
 
 
   const handleBuyNow = (product) => {
@@ -45,6 +42,10 @@ export default function Products() {
       state: { product }
     });
   };
+
+  const filteredProducts = products.filter((product) =>
+  product.name.toLowerCase().includes(searchText.toLowerCase())
+);
 
   return (
     <div>
@@ -61,11 +62,7 @@ export default function Products() {
       <h2 className="product-headline">S h o p -- N o w ⬇️</h2>
 
       <div className="product-grid">
-        {products
-          .filter((product) =>
-            product.name.toLowerCase().includes(searchText.toLowerCase())
-          )
-          .map((product) => {
+        {filteredProducts.map((product) => {
             const isInCart = cart.some(item => item.id === product.id);
 
             return (
