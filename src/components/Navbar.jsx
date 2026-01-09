@@ -50,17 +50,11 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
         {isLoggedIn ? (
           <li>
-            <button className="btn" onClick={handleLogout}>
-              Logout
-            </button>
-          </li>
-        ) : (
-          <li>
-            <button className="btn">
-              <Link to="/login">Login</Link>
-            </button>
-          </li>
-        )}
+            <button className="btn" onClick={handleLogout}> Logout </button>
+          </li>) : 
+          ( <li>
+             <button className="btn"> <Link to="/login">Login</Link> </button>
+          </li> )}
       </ul>
     </nav>
   );
