@@ -8,7 +8,6 @@ export default function Checkout() {
 
   const navigate = useNavigate();
   
-
   const product = location.state?.product;
 
 const [name, setName] = useState("");

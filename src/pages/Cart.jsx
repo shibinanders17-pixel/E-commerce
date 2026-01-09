@@ -38,7 +38,7 @@ export default function Cart() {
 
         return ( 
           <div key={item.id} className="cart-item">
-            <img src={item.image} alt={item.name} />
+            <img src={item.image} />
 
             <div className="cart-details">
               <h3>{item.name}</h3>
@@ -56,10 +56,8 @@ export default function Cart() {
                 </strong>
               </p>
 
-              <button onClick={() => removeFromCart(item.id)}>
-                Remove {""}
-              </button>
-             
+              <button onClick={() => removeFromCart(item.id)}> Remove </button>   
+              <span>{" "}</span>
               <button onClick={()=> handleBuyNow(item)} > Buy Now </button>
             </div>
           </div>
