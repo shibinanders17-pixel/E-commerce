@@ -36,7 +36,7 @@ export default function Cart() {
       {cart.map(item => {
         const subtotal = item.price * item.qty;
 
-        return (
+        return ( 
           <div key={item.id} className="cart-item">
             <img src={item.image} alt={item.name} />
 
