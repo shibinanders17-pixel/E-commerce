@@ -12,9 +12,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
   const navigate = useNavigate();
   const location = useLocation();
-
   const showSearchBox = location.pathname === "/";
-
 
   const handleLogout = () => {
     localStorage.removeItem("isLoggedIn");
@@ -22,22 +20,19 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
     navigate("/login");
   };
 
-  
-
-  return (
-    <nav className="navbar">
+      return (
+      <nav className="navbar">
       <img src={Logo} alt="logo" className="img-logo" />
       <h1 style={{color:"black", fontWeight:"bold", textDecoration:"underline"}}>📱 Mobile World</h1>
 
-      {showSearchBox && (
+      {showSearchBox ? (
         <input
           type="text"
           placeholder="Search products..."
           className="search-box"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-        />
-      )}
+        /> ) : null }
 
       <ul className="navbar-link">
         <li>
