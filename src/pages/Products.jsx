@@ -51,12 +51,8 @@ export default function Products() {
     <div>
 
       <div className="banner-wrapper">
-        <img src="/images/Add2.webp" style={{ height: "100px", width: "1300px" }} />
-        <img src="/images/fk.webp" style={{ height: "160px", width: "1300px" }} />
-        <img
-          src="/images/Brands.jpg"
-          style={{ height: "100px", width: "700px", borderRadius: "100px" }}
-        />
+        <img src="/images/fk.webp" className="banner-img" />
+        <img src="/images/Brands.jpg" className="brand-banner"/>
       </div>
 
       <h2 className="product-headline">S h o p -- N o w ⬇️</h2>
