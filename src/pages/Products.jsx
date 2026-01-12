@@ -1,9 +1,10 @@
 import { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import api from "../services/api";
 import "./Products.css";
 import { CartContext } from "../context/CartContext";
 import { SearchContext } from "../context/SearchContext";
+
 
 
 export default function Products() {
@@ -63,8 +64,14 @@ export default function Products() {
 
             return (
               <div key={product.id} className="product-card">
+                <Link to={`/productsDet/${product.id}`}>
                 <img src={product.image} />
-                <h3>{product.name}</h3>
+                </Link>
+                <h3>
+                  <Link to={`/productsDet/${product.id}`}>
+                  {product.name}
+                  </Link>
+                </h3>
                 <p>₹ {product.price.toLocaleString("en-IN")}</p>
 
 

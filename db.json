@@ -4,91 +4,121 @@
       "id": 1,
       "name": "iPhone 15",
       "price": 80000,
-      "image": "http://localhost:5000/images/Apple.jpeg"
+      "image": "http://localhost:5002/images/Apple.jpeg",
+      "specs" : "-256 GB ROM 15.49 cm (6.1 inch) Super Retina XDR Display \n -48MP + 12MP-12MP Front Camera \n -A16 Bionic Chip \n -6 Core Processor Processor",
+      "description" : "Experience the iPhone 15 – your dynamic companion. Dynamic Island ensures you stay connected, bubbling up alerts seamlessly while you're busy. Its durable design features infused glass and aerospace-grade aluminum, making it dependable and resistant to water and dust. Capture life with precision using the 48 MP Main Camera, perfect for any shot. Powered by the A16 Bionic Processor, it excels in computational photography and more, all while conserving battery life. Plus, it's USB-C compatible, simplifying your charging needs. Elevate your tech game with the iPhone 15 – innovation at your fingertips. Goodbye cable clutter, hello convenience."
     },
     {
       "id": 2,
       "name": "Samsung S24",
       "price": 65000,
-      "image": "http://localhost:5000/images/Galaxy.jpeg"
+      "image": "http://localhost:5002/images/Galaxy.jpeg",
+      "specs" : "8 GB RAM | 128 GB ROM 15.75 cm (6.2 inch) Full HD+ Display\n 50MP + 12MP | 12MP Front Camera \n4000 mAh Battery8 Gen 3 Processor",
+      "description" : "Get a smartphone for yourself that can detect your moods and react appropriately. The Samsung Galaxy Ultra's potent processor and advanced camera sensor can handle low light and noise reduction. The phone's Snapdragon 8 Gen 2 processor, which also provides a long battery life to carry you through even the busiest days, also enables quick gaming and video streaming. You can also launch Expert RAW to take high-resolution RAW photos that are vivid and packed with information. Moreover, Dynamic AMOLED 2X offers clear, brilliant details in both bright and low-light conditions. Additionally, to smooth up gaming and save power, the refresh rate is automatically optimised with 120 Hz technology."
     },
     {
       "id": 3,
       "name": "Moto G 57power",
       "price": 25000,
-      "image": "http://localhost:5000/images/Moto.jpeg"
+      "image": "http://localhost:5002/images/Moto.jpeg",
+      "specs" : "8 GB RAM | 128 GB ROM 17.07 cm (6.72 inch) Full HD+ Display\n 50MP + 8MP | 8MP Front Camera \n7000 mAh Battery 6s Gen 4 Processor",
+      "description" : "This Moto G57 Power is a powerhouse designed for endurance and speed featuring the efficient Snapdragon 6s Gen 4 processor and a massive 7000mAh Silicon Carbon battery for up to 60 hours of use. It captures exceptional photos with a 50MP Sony LYTIA 600 camera enhanced by Moto AI and offers an immersive viewing experience on its 17.06 cm (6.72) 120Hz FHD+ display protected by Corning Gorilla Glass 7i. The device is built tough with military-grade durability and IP64 water resistance and includes advanced features like Android 16 with Circle to Search and Google Gemini expandable 8GB RAM (up to 24GB with RAM Boost) Smart Connect Dual Dolby Atmos Stereo Speakers and comprehensive ThinkShield security"
     },
     {
       "id": 4,
       "name": "Mi || Xioami 14",
       "price": 27000,
-      "image": "http://localhost:5000/images/Mi.webp"
+      "image": "http://localhost:5002/images/Mi.webp",
+      "specs" : "8 GB RAM | 256 GB ROM 16.64 cm (6.55 inch) Display\n 50MP Rear Camera | 32MP + 32MP Dual Front Camera\n 4700 mAh Battery8s Gen 3 Mobile Platform Processor",
+      "description" : "SuperNote’s squircle camera design and dual-tone vegan leather finish offer a sleek, elegant, and luxurious look."
     },
     {
       "id": 5,
       "name": "Realme 15pro 5G",
       "price": 18000,
-      "image": "http://localhost:5000/images/Realme.webp"
+      "image": "http://localhost:5002/images/Realme.webp",
+      "specs" : "8 GB RAM | 256 GB ROM 17.27 cm (6.8 inch) Display\n 50MP + 50MP | 50MP Front Camera\n 7000 mAh Battery Snapdragon 7 Gen 4 Processor",
+      "description" : "Triple 50 MP camera setup featuring a Sony IMX896 main sensor, a 50 MP ultra-wide lens, and a 50 MP selfie camera—delivering flagship-level clarity, true-to-life skin tones, and rich detail across portraits, landscapes, and selfies."
     },
     {
       "id": 6,
       "name": "Vivo T4x 5G",
       "price": 32000,
-      "image": "http://localhost:5000/images/Vivo.jpeg"
+      "image": "http://localhost:5002/images/Vivo.jpeg",
+      "specs" : "8 GB RAM | 128 GB ROM 17.07 cm (6.72 inch) Display\n 50MP + 2MP | 8MP Front Camera\n 6500 mAh Battery Dimensity 7300 5G Processor",
+      "description" : "Go All Day , Every Day with no limits with vivo T4x 5G. The 6500 mAh battery and 44W FlashCharge deliver all-day energy, quick recharges, and smart efficiency for nonstop use."
     },
     {
       "id": 7,
       "name": "Umidigi-5G",
       "price": 25000,
-      "image": "http://localhost:5000/images/Umidigi-5G.webp"
+      "image": "http://localhost:5002/images/Umidigi-5G.webp",
+      "specs" : "4 GB RAM | 64 GB ROM | Expandable Upto 1 TB 17.48 cm (6.88 inch) HD+ Display\n 50MP Rear Camera | 5MP Front Camera\n 5160 mAh Battery 4s Gen 2 5G Processor",
+      "description" : "Capture every detail with stunning clarity using the 50 MP Sony sensor, the only camera of its kind in this category, delivering exceptional image quality and advanced photography features like 4-in-1 pixel binning & Classic film filters."
     },
     {
       "id": 8,
       "name": "Poco-m7-pro",
       "price": 22000,
-      "image": "http://localhost:5000/images/Poco-m7-pro.webp"
+      "image": "http://localhost:5002/images/Poco-m7-pro.webp",
+      "specs" : "6 GB RAM | 128 GB ROM | Expandable Upto 1 TB 17.48 cm (6.88 inch) HD+ Display\n 50MP Rear Camera | 8MP Front Camera\n 5160 mAh Battery 4 Gen 2 5G Processor",
+      "description" : "Capture every detail with stunning clarity using the 50 MP Sony sensor, the only camera of its kind in this category, delivering exceptional image quality and advanced photography features like 4-in-1 pixel binning & Classic film filters."
     },
     {
       "id": 9,
       "name": "Motorola-5G-stylus",
       "price": 42000,
-      "image": "http://localhost:5000/images/Motorola-5G-stylus.webp"
+      "image": "http://localhost:5002/images/Motorola-5G-stylus.webp",
+      "specs" : "8 GB RAM | 128 GB ROM | Expandable Upto 1 TB 17.07 cm (6.72 inch) Full HD+ Display\n 50MP + 8MP | 16MP Front Camera\n 5000 mAh Battery T760 Processor 12 5G\n Bands with VoNR|4K Video Recording|Vision Booster Technology",
+      "description" : "Experience the fastest 5G in its segment, powered by advanced technology like 4 Carrier Aggregation (combining multiple network channels for faster speeds) and 4x4 MIMO. Enjoy lightning-fast downloads, seamless multitasking, and smooth streaming with support for all relevant 5G bands and network operators."
     },
     {
       "id": 10,
       "name": "Proma-17-Xn",
       "price": 21700,
-      "image": "http://localhost:5000/images/Proma-17-X.webp"
+      "image": "http://localhost:5002/images/Proma-17-X.webp",
+      "specs" : "512 GB ROM 17.53 cm (6.9 inch) Super Retina XDR Display\n 48MP + 48MP + 12MP | 12MP Front Camera\n A18 Pro Chip, 6 Core Processor Processor",
+      "description" : "Built for Apple Intelligence. Featuring a stunning titanium design. Camera Control. 4K 120 fps Dolby Vision. And A18 Pro chip."
     },
     {
       "id": 11,
       "name": "mi-note14-pro-5g",
       "price": 31700,
-      "image": "http://localhost:5000/images/mi-note14-pro-5g.webp"
+      "image": "http://localhost:5002/images/mi-note14-pro-5g.webp",
+      "specs" : "8 GB RAM | 128 GB ROM 16.94 cm (6.67 inch) Display\n 50MP + 8MP + 2MP | 20MP Front Camera\n 5500 mAh Battery Dimensity 7300 Ultra Processor",
+      "description" : "SuperNote’s squircle camera design and dual-tone vegan leather finish offer a sleek, elegant, and luxurious look."
     },
     {
       "id": 12,
       "name": "iPhone-17-pro-max",
       "price": 111500,
-      "image": "http://localhost:5000/images/iPhone-17-pro-max.webp"
+      "image": "http://localhost:5002/images/iPhone-17-pro-max.webp",
+      "specs" : "256 GB ROM 17.53 cm (6.9 inch) Super Retina XDR Display\n 48MP + 48MP + 48MP | 18MP Front Camera\n A19 Chip, 6 Core Processor Processor",
+      "description" : "SuperNote’s squircle camera design and dual-tone vegan leather finish offer a sleek, elegant, and luxurious look"
     },
     {
       "id": 13,
       "name": "iPhone-17-pro",
       "price": 87000,
-      "image": "http://localhost:5000/images/iPhone-17-pro.webp"
+      "image": "http://localhost:5002/images/iPhone-17-pro.webp",
+      "specs" : "256 GB ROM 16.0 cm (6.3 inch) Super Retina XDR Display\n 48MP + 48MP + 48MP | 18MP Front Camera\n A19 Chip, 6 Core Processor Processor",
+      "description" : "SuperNote’s squircle camera design and dual-tone vegan leather finish offer a sleek, elegant, and luxurious look"
     },
     {
       "id": 14,
       "name": "Motorola-G-plus-5G",
       "price": 27000,
-      "image": "http://localhost:5000/images/Motorola-G-plus-5G.webp"
+      "image": "http://localhost:5002/images/Motorola-G-plus-5G.webp",
+      "specs" : "4 GB RAM | 64 GB ROM | Expandable Upto 512 GB 16.51 cm (6.5 inch) HD+ Display\n 48MP + 2MP | 8MP Front Camera\n 5000 mAh Battery Qualcomm\n Snapdragon 460 Processor Stock Android Experience",
+      "description" : "Love clicking pictures at night? Well, then this Motorola smartphone might just be the one for you. Featuring the Quad Pixel technology, this phone’s light sensitivity is about 4 times more than that of ordinary smartphone cameras, so you can indulge in night photography. Also, this smartphone doesn’t lag performance-wise as it comes with a Snapdragon 460 octa-core processor and up to 4 GB of RAM."
     },
     {
       "id": 15,
       "name": "Samsung-galaxy-A16",
       "price": 42500,
-      "image": "http://localhost:5000/images/Samsung-galaxy-A16.webp"
+      "image": "http://localhost:5002/images/Samsung-galaxy-A16.webp",
+      "specs" : "6 GB RAM | 128 GB ROM 17.02 cm (6.7 inch) Full HD+ Display\n 50MP + 5MP + 2MP | 13MP Front Camera\n 5000 mAh Battery Dimensity 6300 Processor",
+      "description" : "Love clicking pictures at night? Well, then this Motorola smartphone might just be the one for you. Featuring the Quad Pixel technology, this phone’s light sensitivity is about 4 times more than that of ordinary smartphone cameras, so you can indulge in night photography. Also, this smartphone doesn’t lag performance-wise as it comes with a Snapdragon 460 octa-core processor and up to 4 GB of RAM."
     }
   ]
 }

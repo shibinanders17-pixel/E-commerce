@@ -23,7 +23,7 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
       return (
       <nav className="navbar">
       <img src={Logo} alt="logo" className="img-logo" />
-      <h1 style={{color:"black", fontWeight:"bold", textDecoration:"underline"}}>📱 Mobile World</h1>
+      <h1 style={{color:"white", fontWeight:"bold", textDecoration:"underline" }}>📱 Mobile World</h1>
 
       {showSearchBox ? (
         <input
