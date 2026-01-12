@@ -6,6 +6,7 @@ export default function Success() {
       <h1>✅ Your Order Successful</h1>
       <p>Thanks for your order !!!</p>
 
+      
       <Link to="/">
         <button style={{padding:"8px", borderRadius:"10px", background:"lightblue"}}>Continue Shopping</button>
       </Link>

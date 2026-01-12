@@ -9,10 +9,14 @@ import Register from "./pages/Register";
 import Checkout from "./pages/Checkout";
 import Payment from "./pages/Payment";
 import Success from "./pages/Success";
-import AdminLogin from "./admin/AdminLogin";
-import AdminDashboard from "./admin/AdminDashboard";
 import CartProvider from "./context/CartContext";
 import SearchProvider from "./context/SearchContext";
+
+import AdminLogin from "./admin/AdminLogin";
+import AdminDashboard from "./admin/AdminDashboard";
+import AdminLayout from "./admin/AdminLayout";
+// import ProductManager from "./admin/ProductManager";
+import AdminSidebar from "./admin/AdminSidebar"
 
 export default function AppContent() {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -42,6 +46,11 @@ export default function AppContent() {
 
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+          <Route path="/admin/layout" element={<AdminLayout />} />
+          <Route path="/admin/sidebar" element={<AdminSidebar />} />
+          {/* <Route path="/admin/products-man" element={<ProductManager />} /> */}
+          {/* <Route path="/admin/users-list" element={<UserList />} />
+          <Route path="/admin/add-product" element={<AddProduct />} /> */}
         </Routes>
       </CartProvider>
     </SearchProvider>
