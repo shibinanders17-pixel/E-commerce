@@ -9,7 +9,7 @@ export default function AdminLogin() {
   const handleLogin = () => {
     if (username === "admin" && password === "admin123") {
       alert("Admin Login Success");
-      navigate("/admin/sidebar");
+      navigate("/admin/dashboard");
     } else {
       alert("Invalid Admin Credentials");
     }
