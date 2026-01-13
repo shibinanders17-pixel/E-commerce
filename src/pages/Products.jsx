@@ -56,7 +56,7 @@ export default function Products() {
         <img src="/images/Brands.jpg" className="brand-banner"/>
       </div>
 
-      <h2 className="product-headline">S h o p -- N o w ⬇️</h2>
+      <h2 className="product-headline">S h o p -- N o w ⬇</h2>
 
       <div className="product-grid">
         {filteredProducts.map((product) => {

@@ -5,14 +5,14 @@
 }
 
 .text-logo{
-  background: linear-gradient(to right, rgb(227, 224, 224), rgb(245, 158, 8));
+  background: linear-gradient(to right, rgb(227, 224, 224), transparent);
   border-radius: 5px;
   margin: 25px;
   padding: 5px;
 }
 
 .navbar{
-    background-color: orange;
+    background: linear-gradient(rgb(238, 161, 6), transparent);
     display: flex;
     justify-content: space-between;
     padding : 0px 70px;
