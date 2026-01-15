@@ -35,21 +35,22 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
         /> ) : null }
 
       <ul className="navbar-link">
-        <li>
-          <Link to="/">Shop 🛍️</Link>
-        </li>
+       <li>
+        <Link to="/">Shop 🛍️</Link>
+       </li>
 
-        <li>
-          <Link to="/cart">Cart 🛒 ({cart.length})</Link>
-        </li>
+      <li>
+        <Link to="/cart">Cart 🛒 ({cart.length})</Link>
+      </li>
+         
+     {isLoggedIn ? (
+        <li> <button className="btn" onClick={handleLogout}>Logout</button> </li> ) : 
+      ( <li> <Link to="/login" className="btn">Login</Link> </li> )}
 
-        {isLoggedIn ? (
-          <li>
-            <button className="btn" onClick={handleLogout}> Logout </button>
-          </li>) : 
-          ( <li>
-             <button className="btn"> <Link to="/login">Login</Link> </button>
-          </li> )}
+     <li>
+        <Link to="/admin" className="btn">Admin</Link>
+     </li>
+       
       </ul>
     </nav>
   );

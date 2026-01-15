@@ -12,7 +12,7 @@
 }
 
 .navbar{
-    background: linear-gradient(rgb(210, 140, 0), transparent);
+    background: linear-gradient(rgb(201, 200, 198), transparent);
     display: flex;
     justify-content: space-between;
     padding : 0px 70px;
@@ -36,27 +36,37 @@
     gap: 45px;
     list-style: none;
 }
-.navbar-link a{
-    text-decoration-line: none;
-    font-size: 18px;
-    color: black;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
+.navbar-link a:not(.btn) {
+  text-decoration: none;
+  font-size: 18px;
+  color: black;
 }
 
-.navbar-link :hover{
-    text-decoration: underline;
+.navbar-link a:not(.btn):hover {
+  text-decoration: underline;
 }
 
-.btn{
-    padding: 3px 15px;
-    border: 1px solid rgb(235, 229, 229);
-    border-radius: 5px;
+
+.btn {
+  display: inline-block;
+  padding: 6px 14px;
+  border: 1px solid rgb(120, 120, 120);
+  border-radius: 6px;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s ease;
 }
 
-.btn :hover{
-     text-decoration: underline;
-
+.btn:hover {
+  background: linear-gradient(rgb(71, 105, 173), rgb(133, 207, 133));
+  color: white;
+  text-decoration: none;
 }
+
 
 .search-box {
   width: 400px;

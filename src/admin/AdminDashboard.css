@@ -1,17 +1,65 @@
 .dashboard {
-  padding: 20px;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #f5f7fb;
 }
+
+.dashboard h2 {
+  font-size: 38px;
+  margin-bottom: 30px;
+  color: #0b3e71;
+  letter-spacing: 1px;
+  background: linear-gradient(to right, rgb(211, 208, 208), rgb(255, 255, 255));
+  font-family:Verdana, Geneva, Tahoma, sans-serif
+}
+
 
 .dashboard-cards {
   display: flex;
-  gap: 20px;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card-link {
+  text-decoration: none;
+  color: inherit;
 }
 
 .card {
-  background: #f3f3f3;
+  width: 230px;
+  height: 150px;
+  background: white;
+  border-radius: 12px;
   padding: 20px;
-  border-radius: 8px;
-  width: 200px;
   text-align: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: all 0.1s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+}
+
+.card h3 {
+  font-size: 18px;
+  color: #34495e;
+  margin-bottom: 10px;
+}
+
+.card p {
+  font-size: 26px;
+  font-weight: bold;
+  color: #4f46e5;
+  margin: 5px 0;
+}
+
+.card span {
+  font-size: 14px;
+  color: #7f8c8d;
 }

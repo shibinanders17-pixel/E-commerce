@@ -16,7 +16,12 @@ import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
 import AdminLayout from "./admin/AdminLayout";
 import ProductManager from "./admin/ProductManager";
-import AdminSidebar from "./admin/AdminSidebar"
+import AdminSidebar from "./admin/AdminSidebar";
+import AddProduct from "./admin/AddProduct";
+import EditProduct from "./admin/EditProduct";
+import AdminUsers from "./admin/AdminUsers";
+import UserDetails from "./admin/UserDetails";
+
 
 export default function AppContent() {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -49,8 +54,11 @@ export default function AppContent() {
           <Route path="/admin/layout" element={<AdminLayout />} />
           <Route path="/admin/sidebar" element={<AdminSidebar />} />
           <Route path="/admin/products-man" element={<ProductManager />} />
-          {/* <Route path="/admin/users-list" element={<UserList />} />
-          <Route path="/admin/add-product" element={<AddProduct />} /> */}
+          <Route path="/admin/add-product" element={<AddProduct />} />
+          <Route path="/admin/edit-product/:id" element={<EditProduct />} />
+          <Route path="/admin/users" element={<AdminUsers />} />
+          <Route path="/admin/users/:id" element={<UserDetails />} />
+
         </Routes>
       </CartProvider>
     </SearchProvider>
