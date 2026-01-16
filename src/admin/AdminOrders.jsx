@@ -1,8 +1,80 @@
+import { useEffect, useState } from "react";
+import api from "../services/api";
+import "./AdminOrders.css";
+
 export default function AdminOrders() {
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+    fetchOrders();
+  }, []);
+
+  const fetchOrders = async () => {
+    try {
+      const res = await api.get("/orders");
+      setOrders(res.data);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  // DELETE ORDER
+  const handleDelete = async (id) => {
+    if (window.confirm("Are you sure to delete this order?")) {
+      try {
+        await api.delete(`/orders/${id}`);
+        fetchOrders(); // refresh orders list
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+
   return (
-    <div style={{ padding: "30px", textAlign: "center" }}>
-      <h2>Orders Management</h2>
-      <p>Orders module coming soon...</p>
+    <div className="orders-container">
+      <h2 className="orders-title">Orders List</h2>
+
+      {orders.length === 0 ? (
+        <p className="no-orders">No orders placed yet ❌</p>
+      ) : (
+        <table className="orders-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>User</th>
+              <th>Product</th>
+              <th>Qty</th>
+              <th>Total</th>
+              <th>Payment</th>
+              <th>Status</th>
+              <th>Date</th>
+              <th>Action</th> {/* NEW */}
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((order) => (
+              <tr key={order.id}>
+                <td>{order.id}</td>
+                <td>{order.userName}</td>
+                <td>{order.productName}</td>
+                <td>{order.quantity}</td>
+                <td>₹ {order.totalAmount}</td>
+                <td>{order.paymentMethod}</td>
+                <td>{order.status}</td>
+                <td>{order.orderDate}</td>
+                <td>
+                  <button
+                    className="delete-order-btn"
+                    onClick={() => handleDelete(order.id)}
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </div>
   );
 }

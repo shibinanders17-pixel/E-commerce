@@ -12,18 +12,21 @@ export default function UserDetails() {
       name: "Shibin Anderson",
       email: "shibin@gmail.com",
       phone: "9876543210",
+      pincode : "653650"
     },
     {
       id: 2,
-      name: "Arun Kumar",
-      email: "arun@gmail.com",
+      name: "Alex",
+      email: "alex@gmail.com",
       phone: "9123456780",
+      pincode : "631198"
     },
     {
       id: 3,
-      name: "Vignesh",
-      email: "vignesh@gmail.com",
+      name: "John",
+      email: "john@gmail.com",
       phone: "9988776655",
+      pincode : "623719"
     },
   ];
 
@@ -39,7 +42,7 @@ export default function UserDetails() {
       id: 102,
       product: "Samsung S24",
       price: 65000,
-      status: "Shipped",
+      status: "Delivered",
     },
   ];
 
@@ -51,15 +54,16 @@ export default function UserDetails() {
 
   return (
     <div className="user-details-container">
-      <h2 className="user-title">User Details</h2>
+      <h2 className="user-title">User Details 👤</h2>
 
       <div className="user-info">
         <p><strong>Name:</strong> {user.name}</p>
         <p><strong>Email:</strong> {user.email}</p>
         <p><strong>Phone:</strong> {user.phone}</p>
+         <p><strong>Pincode:</strong> {user.pincode}</p>
       </div>
 
-      <h3 className="orders-title">Orders</h3>
+      <h3 className="orders-title">Previous Orders</h3>
 
       <table className="orders-table">
         <thead>

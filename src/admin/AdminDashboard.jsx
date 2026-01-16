@@ -1,40 +1,55 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import api from "../services/api";
 import "./AdminDashboard.css";
 
 export default function AdminDashboard() {
+  const [totalProducts, setTotalProducts] = useState(0);
+  const [totalUsers, setTotalUsers] = useState(0);
+  const [totalOrders, setTotalOrders] = useState(0);
+
+  useEffect(() => {
+    fetchCounts();
+  }, []);
+
+  const fetchCounts = async () => {
+    try {
+      const productsRes = await api.get("/products");
+      setTotalProducts(productsRes.data.products?.length || productsRes.data.length);
+
+      const usersRes = await api.get("/users");
+      setTotalUsers(usersRes.data.users?.length || usersRes.data.length);
+
+      const ordersRes = await api.get("/orders");
+      setTotalOrders(ordersRes.data.orders?.length || ordersRes.data.length);
+
+    } catch (error) {
+      console.log("Error fetching dashboard counts", error);
+    }
+  };
+
   return (
-    <div className="dashboard">
-      <h2>Admin Dashboard</h2>
+    <div className="dashboard-container">
+      <h1>Admin Dashboard</h1>
 
       <div className="dashboard-cards">
-        
-        {/* Products */}
-        <Link to="/admin/products-man" className="card-link">
-          <div className="card">
-            <h3>Total Products List</h3>
-            <p>25</p>
-            <span>Manage Products</span>
-          </div>
-        </Link>
+        <div className="card">
+          <h3>Total Products</h3>
+          <p>{totalProducts}</p>
+          <Link to="/admin/products-man">Manage Products</Link>
+        </div>
 
-        {/* Users */}
-        <Link to="/admin/users" className="card-link">
-          <div className="card">
-            <h3>Total Users</h3>
-            <p>12</p>
-            <span>View Users</span>
-          </div>
-        </Link>
+        <div className="card">
+          <h3>Total Users</h3>
+          <p>{totalUsers}</p>
+          <Link to="/admin/users">View Users</Link>
+        </div>
 
-        {/* Orders */}
-        <Link to="/admin/orders" className="card-link">
-          <div className="card">
-            <h3>Total Orders</h3>
-            <p>8</p>
-            <span>View Orders</span>
-          </div>
-        </Link>
-
+        <div className="card">
+          <h3>Total Orders</h3>
+          <p>{totalOrders}</p>
+          <Link to="/admin/orders">View Orders</Link>
+        </div>
       </div>
     </div>
   );

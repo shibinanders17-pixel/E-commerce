@@ -1,12 +1,16 @@
+body{
+  background: linear-gradient(to left, rgb(122, 204, 190), rgb(97, 200, 152));
+}
+
 .user-details-container {
   padding: 30px;
   text-align: center;
 }
 
 .user-title {
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 700;
-  color: #6b21a8;
+  color: #000000;
   margin-bottom: 20px;
   border-bottom: 3px solid #6b21a8;
   display: inline-block;
@@ -23,9 +27,9 @@
 }
 
 .orders-title {
-  font-size: 24px;
+  font-size: 28px;
   margin-bottom: 15px;
-  color: #333;
+  color: #a82020;
 }
 
 .orders-table {

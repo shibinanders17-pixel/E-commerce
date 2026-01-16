@@ -1,0 +1,51 @@
+.orders-container {
+  padding: 30px;
+}
+
+.orders-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 25px;
+  color: #1f2937;
+}
+
+.orders-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.orders-table th,
+.orders-table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+}
+
+.orders-table th {
+  background-color: #f3f4f6;
+  font-weight: bold;
+}
+
+.orders-table tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Status badges */
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status.pending {
+  background-color: #fde68a;
+  color: #92400e;
+}
+
+.status.completed {
+  background-color: #bbf7d0;
+  color: #065f46;
+}

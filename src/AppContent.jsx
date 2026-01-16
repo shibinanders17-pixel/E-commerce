@@ -14,9 +14,7 @@ import SearchProvider from "./context/SearchContext";
 
 import AdminLogin from "./admin/AdminLogin";
 import AdminDashboard from "./admin/AdminDashboard";
-import AdminLayout from "./admin/AdminLayout";
 import ProductManager from "./admin/ProductManager";
-import AdminSidebar from "./admin/AdminSidebar";
 import AddProduct from "./admin/AddProduct";
 import EditProduct from "./admin/EditProduct";
 import AdminUsers from "./admin/AdminUsers";
@@ -51,8 +49,6 @@ export default function AppContent() {
 
           <Route path="/admin" element={<AdminLogin />} />
           <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/layout" element={<AdminLayout />} />
-          <Route path="/admin/sidebar" element={<AdminSidebar />} />
           <Route path="/admin/products-man" element={<ProductManager />} />
           <Route path="/admin/add-product" element={<AddProduct />} />
           <Route path="/admin/edit-product/:id" element={<EditProduct />} />
