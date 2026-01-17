@@ -1,10 +1,8 @@
-body{
-  background: linear-gradient(to left, rgb(122, 204, 190), rgb(97, 200, 152));
-}
-
 .user-details-container {
   padding: 30px;
   text-align: center;
+  background: linear-gradient(to left, rgb(122, 204, 190), rgb(97, 200, 152));
+  height: 100vh;
 }
 
 .user-title {

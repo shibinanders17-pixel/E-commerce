@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import api from "../services/api";   // same api file you use in user side
+import api from "../services/api"; 
 import { useNavigate } from "react-router-dom";
 import "./ProductManager.css"
 
@@ -8,7 +8,6 @@ export default function ProductManager() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const navigate = useNavigate();
 
-  // Get all products
   useEffect(() => {
     fetchProducts();
   }, []);
@@ -35,7 +34,7 @@ export default function ProductManager() {
       api.delete(`/products/${id}`)
         .then(() => {
           alert("Product deleted");
-          fetchProducts(); // refresh list
+          fetchProducts();
         })
         .catch((err) => {
           console.log(err);
@@ -51,12 +50,11 @@ return (
 
       <div className="pm-actions">
         <select
-          value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
           className="category-select"
         >
           <option value="All">All Brands</option>
-          <option value="Apple">iPhone</option>
+          <option value="iPhone">iPhone</option>
           <option value="Samsung">Samsung</option>
           <option value="Redmi">Redmi</option>
           <option value="Realme">Realme</option>

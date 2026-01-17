@@ -16,7 +16,7 @@ export default function AdminDashboard() {
   const fetchCounts = async () => {
     try{
   const productsRes = await api.get("/products");
-  setTotalProducts(productsRes.data.length);
+  setTotalProducts(productsRes.data.length);   
 
   const usersRes = await api.get("/users");
   setTotalUsers(usersRes.data.length);
