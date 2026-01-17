@@ -7,11 +7,9 @@ export default function AdminLogin() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
-    e.preventDefault();
-
-    // simple demo login
-    if (username === "admin" && password === "1234") {
+  const handleLogin = () => {
+      if (username === "admin" && password === "1234") {
+       alert("login Successfully") 
           navigate("/admin/dashboard");
     } else {
       alert("Invalid Admin username / password");
@@ -20,8 +18,8 @@ export default function AdminLogin() {
 
   return (
     <div className="admin-login-container">
-      <form className="admin-login-box" onSubmit={handleLogin}>
-        <h2>Admin Login</h2>
+         <div className="admin-login-box">
+             <h2>Admin Login</h2>
 
         <input
           type="text"
@@ -37,8 +35,8 @@ export default function AdminLogin() {
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit">Login</button>
-      </form>
+        <button onClick={handleLogin}>Login</button>
+        </div>
     </div>
   );
 }

@@ -12,22 +12,22 @@ export default function AdminDashboard() {
     fetchCounts();
   }, []);
 
+
   const fetchCounts = async () => {
-    try {
-      const productsRes = await api.get("/products");
-      setTotalProducts(productsRes.data.products?.length || productsRes.data.length);
+    try{
+  const productsRes = await api.get("/products");
+  setTotalProducts(productsRes.data.length);
 
-      const usersRes = await api.get("/users");
-      setTotalUsers(usersRes.data.users?.length || usersRes.data.length);
+  const usersRes = await api.get("/users");
+  setTotalUsers(usersRes.data.length);
 
-      const ordersRes = await api.get("/orders");
-      setTotalOrders(ordersRes.data.orders?.length || ordersRes.data.length);
-
-    } catch (error) {
+  const ordersRes = await api.get("/orders");
+  setTotalOrders(ordersRes.data.length);
+     } catch (error) {
       console.log("Error fetching dashboard counts", error);
-    }
+     }
   };
-
+  
   return (
     <div className="dashboard-container">
       <h1>Admin Dashboard</h1>
@@ -42,11 +42,11 @@ export default function AdminDashboard() {
         <div className="card">
           <h3>Total Users</h3>
           <p>{totalUsers}</p>
-          <Link to="/admin/users">View Users</Link>
+          <Link to="/admin/users">View Specific Users Lists</Link>
         </div>
 
         <div className="card">
-          <h3>Total Orders</h3>
+          <h3>Total Orders Details</h3>
           <p>{totalOrders}</p>
           <Link to="/admin/orders">View Orders</Link>
         </div>

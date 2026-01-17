@@ -33,9 +33,10 @@ export default function AppContent() {
     <SearchProvider>
       <CartProvider>
         
-        {!isAdminRoute && (
-          <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
-        )}
+       {!isAdminRoute ? (
+         <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+              ) : null}
+
 
         <Routes>
           <Route path="/" element={<Products />} />
