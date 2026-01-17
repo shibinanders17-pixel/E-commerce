@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route, useLocation, Outlet  } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Products from "./pages/Products";
@@ -19,7 +19,7 @@ import AddProduct from "./admin/AddProduct";
 import EditProduct from "./admin/EditProduct";
 import AdminUsers from "./admin/AdminUsers";
 import UserDetails from "./admin/UserDetails";
-import AdminOrders from "./admin/AdminOrders"
+import AdminOrders from "./admin/AdminOrders";
 
 export default function AppContent() {
   const [isLoggedIn, setIsLoggedIn] = useState(
@@ -55,9 +55,8 @@ export default function AppContent() {
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/admin/users/:id" element={<UserDetails />} />
           <Route path="/admin/orders" element={<AdminOrders />} />
-
-
-        </Routes>
+         
+                 </Routes>
       </CartProvider>
     </SearchProvider>
   );

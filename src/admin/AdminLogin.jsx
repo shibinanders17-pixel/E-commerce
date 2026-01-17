@@ -12,7 +12,7 @@ export default function AdminLogin() {
 
     // simple demo login
     if (username === "admin" && password === "1234") {
-      navigate("/admin/dashboard");
+          navigate("/admin/dashboard");
     } else {
       alert("Invalid Admin username / password");
     }

@@ -92,10 +92,10 @@ export default function EditProduct() {
             onChange={(e) => setDescription(e.target.value)}
           />
 
-           <label>Description</label>
+           <label>Category</label>
           <input
             value={category}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => setCategory(e.target.value)}
           />
           
           <div className="edit-actions">
