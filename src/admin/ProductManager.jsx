@@ -8,27 +8,23 @@ export default function ProductManager() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const navigate = useNavigate();
 
-  useEffect(() => {
+  useEffect(()=>{
     fetchProducts();
-  }, []);
+  },[])
 
-  const fetchProducts = () => {
-    api.get("/products")
-      .then((res) => {
-        setProducts(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+  const fetchProducts =()=>{
+    api.get("/products").then((res)=>{
+      setProducts(res.data)
+    }).catch((err)=>{
+      console.log(err)
+    });
   };
 
+
   const filteredProducts =
-  selectedCategory === "All"
-    ? products
-    : products.filter((p) => p.category === selectedCategory);
+     selectedCategory === "All"? products : products.filter((p) => p.category === selectedCategory);
 
 
-  // Delete product
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
       api.delete(`/products/${id}`)
@@ -50,6 +46,7 @@ return (
 
       <div className="pm-actions">
         <select
+          value={selectedCategory}
           onChange={(e) => setSelectedCategory(e.target.value)}
           className="category-select"
         >
@@ -58,7 +55,6 @@ return (
           <option value="Samsung">Samsung</option>
           <option value="Redmi">Redmi</option>
           <option value="Realme">Realme</option>
-          <option value="OnePlus">OnePlus</option>
           <option value="Poco">Poco</option>
           <option value="Vivo">Vivo</option>
           <option value="Motorola">Motorola</option>
@@ -66,10 +62,8 @@ return (
 
         <button
           onClick={() => navigate("/admin/add-product")}
-          className="add-btn"
-        >
-          + Add Product
-        </button>
+          className="add-btn">  + Add Product
+       </button>
       </div>
     </div>
 
@@ -88,28 +82,23 @@ return (
       <tbody>
         {filteredProducts.map((product) => (
           <tr key={product.id}>
-            <td>
-              <img src={product.image} className="pm-image" />
-            </td>
+            <td><img src={product.image} className="pm-image" /></td>
             <td>{product.name}</td>
             <td>₹ {product.price}</td>
             <td className="specs-cell">{product.specs}</td>
             <td className="desc-cell">{product.description}</td>
+           
             <td>
-              <button
+             <button
                 onClick={() => navigate(`/admin/edit-product/${product.id}`)}
-                className="edit-btn"
-              >
-                Edit
-              </button>
-
-              <button
+                className="edit-btn"> Edit
+            </button>
+            <button
                 onClick={() => handleDelete(product.id)}
-                className="delete-btn"
-              >
-                Delete
-              </button>
+                className="delete-btn"> Delete
+           </button>
             </td>
+
           </tr>
         ))}
       </tbody>

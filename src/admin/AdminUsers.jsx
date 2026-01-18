@@ -7,7 +7,6 @@ export default function AdminUsers() {
   const [users, setUsers] = useState([]);
   const navigate = useNavigate();
 
-  // Fetch users from db.json
   useEffect(() => {
     api
       .get("/users")

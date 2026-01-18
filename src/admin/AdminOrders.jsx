@@ -18,12 +18,11 @@ export default function AdminOrders() {
     }
   };
 
-  // DELETE ORDER
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure to delete this order?")) {
       try {
         await api.delete(`/orders/${id}`);
-        fetchOrders(); // refresh orders list
+        fetchOrders();
       } catch (err) {
         console.log(err);
       }
@@ -48,7 +47,7 @@ export default function AdminOrders() {
               <th>Payment</th>
               <th>Status</th>
               <th>Date</th>
-              <th>Action</th> {/* NEW */}
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>

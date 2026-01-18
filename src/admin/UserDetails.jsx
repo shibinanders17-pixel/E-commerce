@@ -5,7 +5,6 @@ export default function UserDetails() {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  // Same fake users data (AdminUsers la use panninathu)
   const users = [
     {
       id: 1,
@@ -30,7 +29,6 @@ export default function UserDetails() {
     },
   ];
 
-  // Hard coded orders
   const orders = [
     {
       id: 101,
