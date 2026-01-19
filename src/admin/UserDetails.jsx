@@ -1,34 +1,14 @@
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import api from "../services/api";
 import "./UserDetails.css";
 
 export default function UserDetails() {
+  const [user, setUser] = useState(null);
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const users = [
-    {
-      id: 1,
-      name: "Shibin Anderson",
-      email: "shibin@gmail.com",
-      phone: "9876543210",
-      pincode : "653650"
-    },
-    {
-      id: 2,
-      name: "Alex",
-      email: "alex@gmail.com",
-      phone: "9123456780",
-      pincode : "631198"
-    },
-    {
-      id: 3,
-      name: "John",
-      email: "john@gmail.com",
-      phone: "9988776655",
-      pincode : "623719"
-    },
-  ];
-
+  
   const orders = [
     {
       id: 101,
@@ -44,7 +24,19 @@ export default function UserDetails() {
     },
   ];
 
-  const user = users.find((u) => u.id === Number(id));
+  useEffect(() => {
+    fetchUserDetails();
+  }, [id]);
+
+  const fetchUserDetails = async () => {
+    try {
+        await api.get(`/users/${id}`).then((res)=>{
+        setUser(res.data)
+      });
+    } catch (error) {
+      console.log("Error fetching user details", error);
+    };
+};
 
   if (!user) {
     return <h2>User not found</h2>;
@@ -58,7 +50,10 @@ export default function UserDetails() {
         <p><strong>Name:</strong> {user.name}</p>
         <p><strong>Email:</strong> {user.email}</p>
         <p><strong>Phone:</strong> {user.phone}</p>
-         <p><strong>Pincode:</strong> {user.pincode}</p>
+        <p><strong>Pincode:</strong> {user.pincode}</p>
+        {user.address && (
+          <p><strong>Address:</strong> {user.address}</p>
+        )}
       </div>
 
       <h3 className="orders-title">Previous Orders</h3>

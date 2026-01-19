@@ -17,7 +17,7 @@ export default function AddProduct() {
     e.preventDefault();
 
     if (!name || !price || !image || !specs || !description || !category) {
-      alert("All fields are required da!");
+      alert("All fields are required must!");
       return;
     }
 
@@ -36,7 +36,7 @@ export default function AddProduct() {
       navigate("/admin/products-man");
     } catch (error) {
       console.log(error);
-      alert("Something went wrong da");
+      alert("Something went wrong");
     }
   };
 

@@ -64,8 +64,7 @@ export default function AdminOrders() {
                 <td>
                   <button
                     className="delete-order-btn"
-                    onClick={() => handleDelete(order.id)}
-                  >
+                    onClick={() => handleDelete(order.id)}>
                     Delete
                   </button>
                 </td>

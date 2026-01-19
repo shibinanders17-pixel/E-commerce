@@ -14,7 +14,7 @@ export default function EditProduct() {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("")
 
-  // Fetch existing product
+
   useEffect(() => {
     api.get(`/products/${id}`)
       .then((res) => {
@@ -31,6 +31,7 @@ export default function EditProduct() {
         alert("Failed to load product");
       });
   }, [id]);
+
 
   const handleUpdate = async (e) => {
     e.preventDefault();

@@ -1,12 +1,15 @@
 .orders-container {
   padding: 30px;
+  background: #42a488;
+  height: 100vh;
 }
 
 .orders-title {
   text-align: center;
-  font-size: 32px;
+  font-size: 38px;
   margin-bottom: 25px;
   color: #1f2937;
+  padding: 10px;
 }
 
 .orders-table {
@@ -18,9 +21,10 @@
 
 .orders-table th,
 .orders-table td {
-  border: 1px solid #ddd;
-  padding: 12px;
+  border: 2px solid #ddd;
+  padding: 18px;
   text-align: center;
+  font-size: medium;
 }
 
 .orders-table th {
@@ -32,7 +36,6 @@
   background-color: #f9fafb;
 }
 
-/* Status badges */
 .status {
   padding: 4px 10px;
   border-radius: 12px;
