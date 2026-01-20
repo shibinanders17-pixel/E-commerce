@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+
+/* Global container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Tables mobile fix */
+.table-responsive {
+  overflow-x: auto;
+  width: 100%;
+}

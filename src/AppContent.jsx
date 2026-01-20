@@ -7,7 +7,6 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Checkout from "./pages/Checkout";
-import Payment from "./pages/Payment";
 import Success from "./pages/Success";
 import CartProvider from "./context/CartContext";
 import SearchProvider from "./context/SearchContext";
@@ -45,19 +44,17 @@ export default function AppContent() {
           <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
           <Route path="/register" element={<Register />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route path="/payment" element={<Payment />} />
           <Route path="/success" element={<Success />} />
 
           <Route path="/admin" element={<AdminLogin />} />
-          <Route path="/admin/dashboard" element={<AdminDashboard />} />
-          <Route path="/admin/products-man" element={<ProductManager />} />
-          <Route path="/admin/add-product" element={<AddProduct />} />
-          <Route path="/admin/edit-product/:id" element={<EditProduct />} />
-          <Route path="/admin/users" element={<AdminUsers />} />
-          <Route path="/admin/users/:id" element={<UserDetails />} />
-          <Route path="/admin/orders" element={<AdminOrders />} />
-         
-                 </Routes>
+          <Route path="admin/dashboard" element={<AdminDashboard />} />
+          <Route path="admin/products-man" element={<ProductManager />} />
+          <Route path="admin/add-product" element={<AddProduct />} />
+          <Route path="admin/edit-product/:id" element={<EditProduct />} />
+          <Route path="admin/users" element={<AdminUsers />} />
+          <Route path="admin/users/:id" element={<UserDetails />} />
+          <Route path="admin/orders" element={<AdminOrders />} />
+        </Routes>
       </CartProvider>
     </SearchProvider>
   );

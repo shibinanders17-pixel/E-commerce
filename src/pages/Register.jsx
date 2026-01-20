@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Login.css";
 
 export default function Register() {
   const [username, setUsername] = useState("");
@@ -14,34 +13,51 @@ export default function Register() {
     }
 
     const user = {
-      username : username,
-      password : password
+      username,
+      password,
     };
 
     localStorage.setItem("user", JSON.stringify(user));
-    alert("Registration successful");
+    alert("Registration successful 🎉");
     navigate("/login");
   };
 
   return (
-    <div className="login-container">
-      <h2>Register</h2>
+    <div
+      className="flex flex-col items-center justify-center
+                 w-screen h-screen gap-3
+                 bg-cover bg-center bg-no-repeat"
+      style={{
+        backgroundImage: "url('/src/assets/95cdfeef.avif')",
+      }}
+    >
+      <h2 className="text-3xl font-bold text-black mb-2">
+        Register
+      </h2>
 
-      <label>First name: </label>
-      <input type="text" placeholder="enter first name"  />
+      <input
+        type="text"
+        placeholder="First name"
+        className="px-3 py-2 w-64 border rounded outline-none"
+      />
 
-       <label>Last name: </label>
-      <input type="text" placeholder="enter last name"  />
+      <input
+        type="text"
+        placeholder="Last name"
+        className="px-3 py-2 w-64 border rounded outline-none"
+      />
 
-      <span>DOB: </span>
-      <input type="date" placeholder="enter last name"  />
-      
+      <input
+        type="date"
+        className="px-3 py-2 w-64 border rounded outline-none"
+      />
+
       <input
         type="text"
         placeholder="Set Username"
         value={username}
         onChange={(e) => setUsername(e.target.value)}
-        className="login-input"
+        className="px-3 py-2 w-64 border rounded outline-none"
       />
 
       <input
@@ -49,17 +65,21 @@ export default function Register() {
         placeholder="Set New Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        className="login-input"
+        className="px-3 py-2 w-64 border rounded outline-none"
       />
-       <span>⬇️</span>
-      <button onClick={handleRegister} className="login-button">
+
+      <button
+        onClick={handleRegister}
+        className="px-5 py-2 mt-2 bg-black text-white rounded
+                   hover:bg-gray-800 transition"
+      >
         Register
       </button>
 
-      <p style={{ textAlign: "center" }}>
-        Already have an account? →
+      <p className="text-sm">
+        Already have an account?{" "}
         <span
-          style={{ color: "blue", cursor: "pointer" }}
+          className="text-blue-600 underline cursor-pointer"
           onClick={() => navigate("/login")}
         >
           Login
@@ -68,7 +88,4 @@ export default function Register() {
     </div>
   );
 }
-
-
-
 
