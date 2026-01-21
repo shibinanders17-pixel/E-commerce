@@ -136,6 +136,10 @@
       "category": "Samsung"
     }
   ],
+  "admin": {
+    "username": "admin",
+    "password": "1234"
+  },
   "users": [
     {
       "id": "1",
@@ -190,34 +194,6 @@
       "totalAmount": 25000,
       "status": "Pending⏳",
       "orderDate": "1/17/2026, 9:56:32 AM"
-    },
-    {
-      "id": "26a1",
-      "userName": "jkbl",
-      "address": "jkblb",
-      "phone": "98685",
-      "paymentMethod": "COD",
-      "productId": "8",
-      "productName": "Poco-m7-pro",
-      "price": 22000,
-      "quantity": 1,
-      "totalAmount": 22000,
-      "status": "Pending⏳",
-      "orderDate": "1/20/2026, 12:42:57 PM"
-    },
-    {
-      "id": "add9",
-      "userName": "hhvjhv",
-      "address": "hvjhvjv",
-      "phone": "54657",
-      "paymentMethod": "COD",
-      "productId": "1",
-      "productName": "iPhone 15",
-      "price": 84000,
-      "quantity": 1,
-      "totalAmount": 84000,
-      "status": "Pending⏳",
-      "orderDate": "1/20/2026, 5:41:47 PM"
     }
   ]
 }

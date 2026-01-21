@@ -12,6 +12,7 @@ import CartProvider from "./context/CartContext";
 import SearchProvider from "./context/SearchContext";
 
 import AdminLogin from "./admin/AdminLogin";
+import AdminProtectedRoute from "./admin/AdminProtectedRoute";
 import AdminDashboard from "./admin/AdminDashboard";
 import ProductManager from "./admin/ProductManager";
 import AddProduct from "./admin/AddProduct";
@@ -47,15 +48,18 @@ export default function AppContent() {
           <Route path="/success" element={<Success />} />
 
           <Route path="/admin" element={<AdminLogin />} />
-          <Route path="admin/dashboard" element={<AdminDashboard />} />
-          <Route path="admin/products-man" element={<ProductManager />} />
-          <Route path="admin/add-product" element={<AddProduct />} />
-          <Route path="admin/edit-product/:id" element={<EditProduct />} />
-          <Route path="admin/users" element={<AdminUsers />} />
-          <Route path="admin/users/:id" element={<UserDetails />} />
-          <Route path="admin/orders" element={<AdminOrders />} />
-        </Routes>
-      </CartProvider>
+
+          <Route path="/admin" element={<AdminProtectedRoute />}>
+          <Route path="dashboard" element={<AdminDashboard />} />
+          <Route path="products-man" element={<ProductManager />} />
+          <Route path="add-product" element={<AddProduct />} />
+          <Route path="edit-product/:id" element={<EditProduct />} />
+          <Route path="users" element={<AdminUsers />} />
+          <Route path="users/:id" element={<UserDetails />} />
+          <Route path="orders" element={<AdminOrders />} />
+        </Route>
+      </Routes>
+     </CartProvider>
     </SearchProvider>
   );
 }

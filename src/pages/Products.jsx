@@ -40,19 +40,20 @@ export default function Products() {
 
   return (
     <div>
-
-      <div className="flex flex-col gap-5 my-5 w-full">
+        <div className="flex flex-col gap-5 my-5 w-full">
         <img
           src="/images/fk.webp"
-          className="w-full h-62.5 rounded-lg object-cover
-                     max-md:h-45 max-sm:h-35"
+          className="w-full h-62 md:h-87
+                     rounded-lg object-cover px-6"
+          alt="Banner"
         />
 
         <img
           src="/images/Brands.jpg"
-          className="w-full h-45 object-contain rounded-xl
-                     bg-linear-to-b from-green-300 to-sky-300
-                     max-md:h-25 max-sm:h-22.5"
+          className="w-full h-25 md:h-62
+                     object-contain rounded-xl
+                     bg-linear-to-b from-green-300 to-sky-300 p-6"
+          alt="Brands"
         />
       </div>
 
@@ -64,22 +65,24 @@ export default function Products() {
       <div className="flex flex-wrap justify-center gap-5
                       px-3 sm:px-6 md:px-10 py-5">
         {filteredProducts.map((product) => {
-          const isInCart = cart.some(item => item.id === product.id);
+          const isInCart = cart.some((item) => item.id === product.id);
 
           return (
             <div
               key={product.id}
               className="border border-gray-300 bg-white
                          rounded-lg p-4 text-center
-                         w-full sm:w-[48%] md:w-[30%] lg:w-[22%]
-                         text-[16px]">
-              
+                         w-full sm:w-[48%] md:w-[30%] lg:w-[22%]"
+            >
+
               <Link to={`/productsDet/${product.id}`}>
-                <img
-                  src={product.image}
-                  className="w-full h-auto max-w-45
-                             mx-auto object-contain"
-                />
+                <div className="h-55 flex items-center justify-center">
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    className="max-h-full max-w-full object-contain"
+                  />
+                </div>
               </Link>
 
               <h3 className="font-sans font-semibold mt-2">
@@ -88,27 +91,33 @@ export default function Products() {
                 </Link>
               </h3>
 
-              <p className="text-[20px] bg-[#383229] text-white my-2">
+              <p className="text-[18px] bg-[#383229] text-white my-2">
                 ₹ {product.price.toLocaleString("en-IN")}
               </p>
 
-              <button
-                onClick={() => handleAddToCart(product, isInCart)}
-                className={`mt-2 px-3 py-2 rounded cursor-pointer
-                  ${
-                    isInCart
-                      ? "bg-green-500 text-white cursor-not-allowed"
-                      : "border text-pink-500"
-                  }`}
-              >
-                {isInCart ? "Added ✓" : "Add to Cart"}
-              </button>
+                   <div className="mt-3 flex flex-col sm:flex-row
+                              gap-2 justify-center">
+                
+                <button onClick={() => handleAddToCart(product, isInCart)}
+                  className={`px-3 py-2 rounded
+                    ${
+                      isInCart
+                        ? "bg-green-500 text-white cursor-not-allowed"
+                        : "border text-pink-500 hover:bg-pink-50"
+                    }`}
+                >
+                  {isInCart ? "Added ✓" : "Add to Cart"}
+                </button>
 
-              <button
-                onClick={() => handleBuyNow(product)}
-                className="mt-3 flex flex-col sm:flex-row gap-2 justify-center">
-                Buy Now
-              </button>
+                <button
+                  onClick={() => handleBuyNow(product)}
+                  className="px-3 py-2 rounded
+                             border text-blue-600
+                             hover:bg-blue-50"
+                >
+                  Buy Now
+                </button>
+              </div>
             </div>
           );
         })}
