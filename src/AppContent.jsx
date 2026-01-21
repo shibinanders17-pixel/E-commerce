@@ -1,4 +1,4 @@
-import { Routes, Route, useLocation, Outlet  } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { useState } from "react";
 import Navbar from "./components/Navbar";
 import Products from "./pages/Products";

@@ -60,16 +60,15 @@ export default function EditProduct() {
       </h1>
 
        <div className="max-w-xl mx-auto bg-white rounded-xl shadow-2xl px-8 py-7">
-        <form onSubmit={handleUpdate} className="space-y-4">
 
+        <form onSubmit={handleUpdate} className="space-y-4">
           <div>
             <label className="block text-sm font-semibold mb-1">Name</label>
             <input
               value={name}
               onChange={(e) => setName(e.target.value)}
               className="w-full h-10 px-3 border rounded-md
-                         focus:outline-none focus:ring-2 focus:ring-purple-400"
-            />
+                         focus:outline-none focus:ring-2 focus:ring-purple-400" />
           </div>
 
           <div>
@@ -79,8 +78,7 @@ export default function EditProduct() {
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               className="w-full h-10 px-3 border rounded-md
-                         focus:outline-none focus:ring-2 focus:ring-purple-400"
-            />
+                         focus:outline-none focus:ring-2 focus:ring-purple-400" />
           </div>
 
           <div>
@@ -89,8 +87,7 @@ export default function EditProduct() {
               value={image}
               onChange={(e) => setImage(e.target.value)}
               className="w-full h-10 px-3 border rounded-md
-                         focus:outline-none focus:ring-2 focus:ring-purple-400"
-            />
+                         focus:outline-none focus:ring-2 focus:ring-purple-400" />
           </div>
 
           <div>
@@ -100,8 +97,7 @@ export default function EditProduct() {
               value={specs}
               onChange={(e) => setSpecs(e.target.value)}
               className="w-full px-3 py-2 border rounded-md
-                         focus:outline-none focus:ring-2 focus:ring-purple-400"
-            />
+                         focus:outline-none focus:ring-2 focus:ring-purple-400"/>
           </div>
 
           <div>
@@ -111,8 +107,7 @@ export default function EditProduct() {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className="w-full px-3 py-2 border rounded-md
-                         focus:outline-none focus:ring-2 focus:ring-purple-400"
-            />
+                         focus:outline-none focus:ring-2 focus:ring-purple-400"/>
           </div>
 
           <div>
@@ -121,16 +116,14 @@ export default function EditProduct() {
               value={category}
               onChange={(e) => setCategory(e.target.value)}
               className="w-full h-10 px-3 border rounded-md
-                         focus:outline-none focus:ring-2 focus:ring-purple-400"
-            />
+                         focus:outline-none focus:ring-2 focus:ring-purple-400" />
           </div>
 
           <div className="flex justify-between pt-5">
             <button
               type="submit"
               className="px-6 py-2 bg-green-600 text-white
-                         rounded-md hover:bg-green-700"
-            >
+                         rounded-md hover:bg-green-700" >
               Update Product
             </button>
 
@@ -138,8 +131,7 @@ export default function EditProduct() {
               type="button"
               onClick={() => navigate("/admin/products-man")}
               className="px-6 py-2 bg-gray-500 text-white
-                         rounded-md hover:bg-gray-600"
-            >
+                         rounded-md hover:bg-gray-600" >
               Cancel
             </button>
           </div>

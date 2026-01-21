@@ -40,7 +40,7 @@ export default function Checkout() {
     try {
       await api.post("/orders", orderData);
       alert("Order placed successfully 🎉");
-      navigate("/success", { state: { order: orderData } });
+      navigate("/success");
     } catch (error) {
       console.log(error);
       alert("Something went wrong while placing order ❌");

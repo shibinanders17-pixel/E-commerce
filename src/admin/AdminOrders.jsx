@@ -21,7 +21,7 @@ export default function AdminOrders() {
     if (window.confirm("Are you sure to delete this order?")) {
       try {
         await api.delete(`/orders/${id}`);
-        fetchOrders();
+        fetchOrders(); 
       } catch (err) {
         console.log(err);
       }
@@ -31,12 +31,10 @@ export default function AdminOrders() {
   return (
     <div
       className="min-h-screen p-8
-                 bg-linear-to-l from-emerald-400 to-teal-500"
-    >
+                 bg-linear-to-l from-emerald-400 to-teal-500">
       <h2
         className="text-center text-4xl font-extrabold text-gray-800
-                   mb-8 border-b-4 border-gray-800 inline-block pb-2"
-      >
+                   mb-8 border-b-4 border-gray-800 inline-block pb-2">
         Orders List
       </h2>
 

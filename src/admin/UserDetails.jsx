@@ -74,13 +74,10 @@ export default function UserDetails() {
         <p className="mb-2">
           <strong>Pincode:</strong> {user.pincode}
         </p>
-
-        {user.address && (
-          <p className="mb-2">
+         <p className="mb-2">
             <strong>Address:</strong> {user.address}
-          </p>
-        )}
-      </div>
+        </p>
+       </div>
 
       <h3 className="text-2xl font-bold text-red-700 mb-4">
         Previous Orders

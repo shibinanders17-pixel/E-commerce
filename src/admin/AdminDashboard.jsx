@@ -38,15 +38,13 @@ export default function AdminDashboard() {
         Admin Dashboard
       </h1>
 
-      <div
-        className="flex flex-wrap gap-6 justify-center"
-      >
-        <div
-          className="w-80 h-32 bg-white rounded-lg p-5
+      <div className="flex flex-wrap gap-6 justify-center">
+
+        <div className="w-80 h-32 bg-white rounded-lg p-5
                      text-center shadow-md
                      cursor-pointer
-                     transition transform hover:-translate-y-1"
-        >
+                     transition transform hover:-translate-y-1" >
+
           <h3 className="text-2xl text-gray-800 mb-1">
             Total Products
           </h3>
@@ -57,18 +55,16 @@ export default function AdminDashboard() {
 
           <Link
             to="/admin/products-man"
-            className="text-sm text-gray-600 underline"
-          >
+            className="text-sm text-gray-600 underline" >
             Manage Products
           </Link>
         </div>
 
-        <div
-          className="w-80 h-32 bg-white rounded-lg p-5
+        <div className="w-80 h-32 bg-white rounded-lg p-5
                      text-center shadow-md
                      cursor-pointer
-                     transition transform hover:-translate-y-1"
-        >
+                     transition transform hover:-translate-y-1" >
+
           <h3 className="text-2xl text-gray-800 mb-1">
             Total Users
           </h3>
@@ -79,8 +75,7 @@ export default function AdminDashboard() {
 
           <Link
             to="/admin/users"
-            className="text-sm text-gray-600 underline"
-          >
+            className="text-sm text-gray-600 underline" >
             View Users List
           </Link>
         </div>
@@ -89,8 +84,7 @@ export default function AdminDashboard() {
           className="w-80 h-32 bg-white rounded-lg p-5
                      text-center shadow-md
                      cursor-pointer
-                     transition transform hover:-translate-y-1"
-        >
+                     transition transform hover:-translate-y-1" >
           <h3 className="text-2xl text-gray-800 mb-1">
             Total Orders
           </h3>
@@ -101,8 +95,7 @@ export default function AdminDashboard() {
 
           <Link
             to="/admin/orders"
-            className="text-sm text-gray-600 underline"
-          >
+            className="text-sm text-gray-600 underline" >
             View Orders
           </Link>
         </div>

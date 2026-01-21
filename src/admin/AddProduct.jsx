@@ -62,8 +62,7 @@ export default function AddProduct() {
               onChange={(e) => setName(e.target.value)}
               className="px-3 py-2 border rounded-md text-sm
                          focus:outline-none focus:border-green-600
-                         focus:ring-1 focus:ring-green-600"
-            />
+                         focus:ring-1 focus:ring-green-600"/>
           </div>
 
           <div className="flex flex-col">
@@ -76,9 +75,8 @@ export default function AddProduct() {
               onChange={(e) => setPrice(e.target.value)}
               className="px-3 py-2 border rounded-md text-sm
                          focus:outline-none focus:border-green-600
-                         focus:ring-1 focus:ring-green-600"
-            />
-          </div>
+                         focus:ring-1 focus:ring-green-600"/>
+           </div>
 
           <div className="flex flex-col">
             <label className="font-semibold text-gray-700 mb-1">
@@ -90,8 +88,7 @@ export default function AddProduct() {
               onChange={(e) => setImage(e.target.value)}
               className="px-3 py-2 border rounded-md text-sm
                          focus:outline-none focus:border-green-600
-                         focus:ring-1 focus:ring-green-600"
-            />
+                         focus:ring-1 focus:ring-green-600"/>
           </div>
 
           <div className="flex flex-col">
@@ -104,8 +101,7 @@ export default function AddProduct() {
               onChange={(e) => setSpecs(e.target.value)}
               className="px-3 py-2 border rounded-md text-sm
                          focus:outline-none focus:border-green-600
-                         focus:ring-1 focus:ring-green-600"
-            />
+                         focus:ring-1 focus:ring-green-600" />
           </div>
 
           <div className="flex flex-col">
@@ -118,8 +114,7 @@ export default function AddProduct() {
               onChange={(e) => setDescription(e.target.value)}
               className="px-3 py-2 border rounded-md text-sm
                          focus:outline-none focus:border-green-600
-                         focus:ring-1 focus:ring-green-600"
-            />
+                         focus:ring-1 focus:ring-green-600"/>
           </div>
 
           <div className="flex flex-col">
@@ -131,8 +126,7 @@ export default function AddProduct() {
               onChange={(e) => setCategory(e.target.value)}
               className="px-3 py-2 border rounded-md text-sm
                          focus:outline-none focus:border-green-600
-                         focus:ring-1 focus:ring-green-600"
-            />
+                         focus:ring-1 focus:ring-green-600" />
           </div>
 
           <div className="flex justify-between pt-4">

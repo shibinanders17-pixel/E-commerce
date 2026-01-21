@@ -136,7 +136,8 @@
       "category": "Samsung"
     }
   ],
-  "admin": {
+
+    "admin": {
     "username": "admin",
     "password": "1234"
   },
@@ -185,7 +186,7 @@
       "id": "1bcd",
       "userName": "sheik",
       "address": "nchcjhv",
-      "phone": "7854",
+      "phone": "7854765478",
       "paymentMethod": "COD",
       "productId": "3",
       "productName": "Moto G 57power",

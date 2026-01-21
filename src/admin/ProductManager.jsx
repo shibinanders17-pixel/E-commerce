@@ -18,20 +18,16 @@ export default function ProductManager() {
       .catch((err) => console.log(err));
   };
 
-  const filteredProducts =
-    selectedCategory === "All"
-      ? products
+  const filteredProducts = selectedCategory === "All" ? products
       : products.filter((p) => p.category === selectedCategory);
+
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
-      api
-        .delete(`/products/${id}`)
-        .then(() => {
+      api.delete(`/products/${id}`).then(() => {
           alert("Product deleted");
           fetchProducts();
-        })
-        .catch((err) => console.log(err));
+        }).catch((err) => console.log(err));
     }
   };
 
@@ -50,8 +46,8 @@ export default function ProductManager() {
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-3 py-2 border rounded-md text-sm"
-          >
+            className="px-3 py-2 border rounded-md text-sm" >
+
             <option value="All">All Brands</option>
             <option value="iPhone">iPhone</option>
             <option value="Samsung">Samsung</option>
@@ -66,8 +62,8 @@ export default function ProductManager() {
             onClick={() => navigate("/admin/add-product")}
             className="px-5 py-2 bg-green-600 text-white
                        rounded-md text-sm
-                       hover:bg-green-700"
-          >
+                       hover:bg-green-700">
+
             + Add Product
           </button>
         </div>
@@ -77,8 +73,7 @@ export default function ProductManager() {
         <table
           className="min-w-275 mx-auto bg-white
                      border-collapse shadow-md
-                     rounded-lg overflow-hidden"
-        >
+                     rounded-lg overflow-hidden">
            <thead>
             <tr className="bg-gray-100">
               <th className="border px-3 py-3 md:px-3 md:py-3
@@ -139,8 +134,7 @@ export default function ProductManager() {
                       }
                       className="px-3 py-1 bg-blue-600 text-white
                                  rounded-md text-xs md:text-sm
-                                 hover:bg-blue-700"
-                    >
+                                 hover:bg-blue-700">
                       Edit
                     </button>
 
@@ -148,8 +142,7 @@ export default function ProductManager() {
                       onClick={() => handleDelete(product.id)}
                       className="px-3 py-1 bg-red-600 text-white
                                  rounded-md text-xs md:text-sm
-                                 hover:bg-red-700"
-                    >
+                                 hover:bg-red-700">
                       Delete
                     </button>
                   </div>
