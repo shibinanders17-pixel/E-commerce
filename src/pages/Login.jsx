@@ -1,28 +1,46 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../services/api";
 
 export default function Login({ setIsLoggedIn }) {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = () => {
-    const storedUser = JSON.parse(localStorage.getItem("user"));
-
-    if (!storedUser) {
-      alert("No user found. Please register first");
+  const handleLogin = async () => {
+    if (!email || !password) {
+      alert("Email and password required");
       return;
     }
 
-    if (
-      username === storedUser.username &&
-      password === storedUser.password
-    ) {
+    try {
+      const res = await api.get(`/users?email=${email}`);
+      const user = res.data[0];
+
+      if (!user) {
+        alert("User not found. Please register");
+        return;
+      }
+
+      if (user.isBlocked) {
+        alert("Your account is blocked by admin");
+        return;
+      }
+
+      if (user.password !== password) {
+        alert("Invalid password");
+        return;
+      }
+
       localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("loggedInUser", JSON.stringify(user));
       setIsLoggedIn(true);
+
+      alert("Login successful");
       navigate("/");
-    } else {
-      alert("Invalid username or password");
+    } catch (error) {
+      console.log(error);
+      alert("Login failed");
     }
   };
 
@@ -40,10 +58,10 @@ export default function Login({ setIsLoggedIn }) {
       </h2>
 
       <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         className="px-3 py-2 w-64 border rounded outline-none"
       />
 
@@ -63,8 +81,7 @@ export default function Login({ setIsLoggedIn }) {
         Login
       </button>
 
-
-       <span>if you don't have account? then you go to</span>
+      <span>if you don't have account? then you go to</span>
       <span
         className="text-blue-600 underline cursor-pointer"
         onClick={() => navigate("/register")}

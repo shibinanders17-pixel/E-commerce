@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 export default function Register() {
+  const navigate = useNavigate();
+
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [dob, setDob] = useState("");
@@ -11,8 +13,6 @@ export default function Register() {
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [pincode, setPincode] = useState("");
-
-  const navigate = useNavigate();
 
   const handleRegister = async () => {
     if (
@@ -29,30 +29,48 @@ export default function Register() {
       return;
     }
 
-    const newUser = {
-      name: `${firstName} ${lastName}`,
-      email,
-      password,
-      phone,
-      address,
-      pincode,
-      dob,
-    };
+    if (phone.length !== 10) {
+      alert("Enter valid 10 digit phone number");
+      return;
+    }
+
+    if (password.length < 6) {
+      alert("Password must be at least 6 characters");
+      return;
+    }
 
     try {
+      const existingUser = await api.get(`/users?email=${email}`);
+      if (existingUser.data.length > 0) {
+        alert("Email already registered");
+        return;
+      }
+
+      const newUser = {
+        name: `${firstName} ${lastName}`,
+        email,
+        password,
+        phone,
+        address,
+        pincode,
+        dob,
+        isBlocked: false, 
+      };
+
       await api.post("/users", newUser);
+
       alert("Registration successful 🎉");
       navigate("/login");
     } catch (error) {
-      alert("Registration failed");
       console.log(error);
+      alert("Registration failed");
     }
   };
 
   return (
     <div
       className="flex flex-col items-center justify-center
-                 w-screen h-screen gap-3
+                 w-screen min-h-screen gap-3
                  bg-cover bg-center bg-no-repeat"
       style={{
         backgroundImage: "url('/src/assets/95cdfeef.avif')",

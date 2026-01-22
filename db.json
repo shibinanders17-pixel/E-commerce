@@ -4,7 +4,7 @@
       "name": "iPhone 15",
       "price": 84000,
       "image": "http://localhost:5002/images/Apple.jpeg",
-      "specs": " 256 GB ROM 15.49 cm (6.1 inch) Super Retina XDR Display \n 48MP + 12MP-12MP Front Camera \n A16 Bionic Chip power\n 6 Core Processor Processor",
+      "specs": "16GB RAM 256 GB ROM 15.49 cm (6.1 inch) Super Retina XDR Display \n 48MP + 12MP-12MP Front Camera \n A16 Bionic Chip power\n 6 Core Processor Processor",
       "description": "Experience the iPhone 15 – your dynamic companion. Dynamic Island ensures you stay connected, bubbling up alerts seamlessly while you're busy. Its durable design features infused glass and aerospace-grade aluminum, making it dependable and resistant to water and dust. Capture life with precision using the 48 MP Main Camera, perfect for any shot. Powered by the A16 Bionic Processor, it excels in computational photography and more, all while conserving battery life. Plus, it's USB-C compatible, simplifying your charging needs. Elevate your tech game with the iPhone 15 – innovation at your fingertips. Goodbye cable clutter, hello convenience.",
       "category": "iPhone",
       "id": "1"
@@ -159,7 +159,8 @@
       "phone": "8838333321",
       "address": "kollemcode district kanyakumari",
       "pincode": "856001",
-      "dob": "1994-06-19"
+      "dob": "1994-06-19",
+      "isBlocked": false
     }
   ],
   "orders": [
@@ -179,7 +180,7 @@
     },
     {
       "id": "1bcd",
-      "userName": "sheik",
+      "userName": "alex pereira",
       "address": "nchcjhv",
       "phone": "7854765478",
       "paymentMethod": "COD",
