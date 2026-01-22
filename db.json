@@ -1,13 +1,13 @@
 {
   "products": [
     {
-      "id": "1",
       "name": "iPhone 15",
       "price": 84000,
       "image": "http://localhost:5002/images/Apple.jpeg",
-      "specs": " -256 GB ROM 15.49 cm (6.1 inch) Super Retina XDR Display \n -48MP + 12MP-12MP Front Camera \n -A16 Bionic Chip power\n -6 Core Processor Processor",
+      "specs": " 256 GB ROM 15.49 cm (6.1 inch) Super Retina XDR Display \n 48MP + 12MP-12MP Front Camera \n A16 Bionic Chip power\n 6 Core Processor Processor",
       "description": "Experience the iPhone 15 – your dynamic companion. Dynamic Island ensures you stay connected, bubbling up alerts seamlessly while you're busy. Its durable design features infused glass and aerospace-grade aluminum, making it dependable and resistant to water and dust. Capture life with precision using the 48 MP Main Camera, perfect for any shot. Powered by the A16 Bionic Processor, it excels in computational photography and more, all while conserving battery life. Plus, it's USB-C compatible, simplifying your charging needs. Elevate your tech game with the iPhone 15 – innovation at your fingertips. Goodbye cable clutter, hello convenience.",
-      "category": "iPhone"
+      "category": "iPhone",
+      "id": "1"
     },
     {
       "id": "2",
@@ -19,13 +19,13 @@
       "category": "Samsung"
     },
     {
-      "id": "3",
       "name": "Moto G 57power",
       "price": 25000,
       "image": "http://localhost:5002/images/Moto.jpeg",
-      "specs": "8 GB RAM | 128 GB ROM 17.07 cm (6.72 inch) Full HD+ Display\n 50MP + 8MP | 8MP Front Camera \n7000 mAh Battery 6s Gen 4 Processor",
+      "specs": "12 GB RAM | 128 GB ROM 17.07 cm (6.72 inch) Full HD+ Display\n 50MP + 8MP | 8MP Front Camera \n7000 mAh Battery 6s Gen 4 Processor",
       "description": "This Moto G57 Power is a powerhouse designed for endurance and speed featuring the efficient Snapdragon 6s Gen 4 processor and a massive 7000mAh Silicon Carbon battery for up to 60 hours of use. It captures exceptional photos with a 50MP Sony LYTIA 600 camera enhanced by Moto AI and offers an immersive viewing experience on its 17.06 cm (6.72) 120Hz FHD+ display protected by Corning Gorilla Glass 7i. The device is built tough with military-grade durability and IP64 water resistance and includes advanced features like Android 16 with Circle to Search and Google Gemini expandable 8GB RAM (up to 24GB with RAM Boost) Smart Connect Dual Dolby Atmos Stereo Speakers and comprehensive ThinkShield security",
-      "category": "Motorola"
+      "category": "Motorola",
+      "id": "3"
     },
     {
       "id": "4",
@@ -136,35 +136,30 @@
       "category": "Samsung"
     }
   ],
-
-    "admin": {
+  "admin": {
     "username": "admin",
     "password": "1234"
   },
   "users": [
     {
-      "id": "1",
-      "name": "Shibin",
-      "email": "shibin@gmail.com",
-      "phone": "9876576810",
-      "address": "nagercoil junction kanyakumari",
-      "pincode": "629160"
+      "id": "70ab",
+      "name": "shibin anderson",
+      "email": "shibinanders17@gmail.com",
+      "password": "123456",
+      "phone": "8838333261",
+      "address": "thatheyupuram colony vallavilai",
+      "pincode": "856543",
+      "dob": "1999-01-09"
     },
     {
-      "id": "2",
-      "name": "Alex",
-      "email": "alex@gmail.com",
-      "phone": "9876543210",
-      "address": "vallavilai junction kanyakumari",
-      "pincode": "629180"
-    },
-    {
-      "id": "3",
-      "name": "John",
-      "email": "john@gmail.com",
-      "phone": "9876543855",
-      "address": "marthandam junction kanyakumari",
-      "pincode": "629165"
+      "id": "7ylb",
+      "name": "alex pereira",
+      "email": "alexp17@gmail.com",
+      "password": "123987",
+      "phone": "8838333321",
+      "address": "kollemcode district kanyakumari",
+      "pincode": "856001",
+      "dob": "1994-06-19"
     }
   ],
   "orders": [

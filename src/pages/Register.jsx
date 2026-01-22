@@ -1,25 +1,52 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import api from "../services/api";
 
 export default function Register() {
-  const [username, setUsername] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [dob, setDob] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+  const [pincode, setPincode] = useState("");
+
   const navigate = useNavigate();
 
-  const handleRegister = () => {
-    if (!username || !password) {
+  const handleRegister = async () => {
+    if (
+      !firstName ||
+      !lastName ||
+      !dob ||
+      !email ||
+      !password ||
+      !phone ||
+      !address ||
+      !pincode
+    ) {
       alert("All fields are required");
       return;
     }
 
-    const user = {
-      username,
+    const newUser = {
+      name: `${firstName} ${lastName}`,
+      email,
       password,
+      phone,
+      address,
+      pincode,
+      dob,
     };
 
-    localStorage.setItem("user", JSON.stringify(user));
-    alert("Registration successful 🎉");
-    navigate("/login");
+    try {
+      await api.post("/users", newUser);
+      alert("Registration successful 🎉");
+      navigate("/login");
+    } catch (error) {
+      alert("Registration failed");
+      console.log(error);
+    }
   };
 
   return (
@@ -38,33 +65,63 @@ export default function Register() {
       <input
         type="text"
         placeholder="First name"
+        value={firstName}
+        onChange={(e) => setFirstName(e.target.value)}
         className="px-3 py-2 w-64 border rounded outline-none"
       />
 
       <input
         type="text"
         placeholder="Last name"
+        value={lastName}
+        onChange={(e) => setLastName(e.target.value)}
         className="px-3 py-2 w-64 border rounded outline-none"
       />
 
       <input
         type="date"
+        value={dob}
+        onChange={(e) => setDob(e.target.value)}
         className="px-3 py-2 w-64 border rounded outline-none"
       />
 
       <input
-        type="text"
-        placeholder="Set Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        type="email"
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
         className="px-3 py-2 w-64 border rounded outline-none"
       />
 
       <input
         type="password"
-        placeholder="Set New Password"
+        placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
+        className="px-3 py-2 w-64 border rounded outline-none"
+      />
+
+      <input
+        type="text"
+        placeholder="Phone"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+        className="px-3 py-2 w-64 border rounded outline-none"
+      />
+
+      <input
+        type="text"
+        placeholder="Address"
+        value={address}
+        onChange={(e) => setAddress(e.target.value)}
+        className="px-3 py-2 w-64 border rounded outline-none"
+      />
+
+      <input
+        type="text"
+        placeholder="Pincode"
+        value={pincode}
+        onChange={(e) => setPincode(e.target.value)}
         className="px-3 py-2 w-64 border rounded outline-none"
       />
 
@@ -88,4 +145,3 @@ export default function Register() {
     </div>
   );
 }
-

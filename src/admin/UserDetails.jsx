@@ -47,7 +47,7 @@ export default function UserDetails() {
   return (
     <div
       className="min-h-screen p-8 text-center
-                 bg-linear-to-l from-emerald-300 to-teal-400"
+                 bg-red-50"
     >
       <h2
         className="text-4xl font-extrabold text-black

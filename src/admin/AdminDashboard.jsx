@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import api from "../services/api";
 
 export default function AdminDashboard() {
@@ -27,78 +26,60 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div
-      className="min-h-[90vh] flex flex-col items-center justify-center
-                 bg-slate-100 px-4"
-    >
-      <h1
-        className="text-4xl font-bold mb-8
-                   text-blue-900 text-center"
-      >
+    <div className="min-h-[90vh] bg-slate-100 px-6 py-8">
+
+      <h1 className="text-4xl font-bold mb-10
+                     text-blue-900 text-center">
         Admin Dashboard
       </h1>
 
-      <div className="flex flex-wrap gap-6 justify-center">
+      <div className="flex flex-wrap gap-8 justify-center">
 
-        <div className="w-80 h-32 bg-white rounded-lg p-5
-                     text-center shadow-md
-                     cursor-pointer
-                     transition transform hover:-translate-y-1" >
-
-          <h3 className="text-2xl text-gray-800 mb-1">
+          <div className="w-80 h-32 bg-white rounded-lg p-6
+                        text-center shadow-md">
+          <h3 className="text-2xl text-gray-800 mb-2">
             Total Products
           </h3>
 
-          <p className="text-2xl font-bold text-blue-600 my-1">
+          <p className="text-3xl font-bold text-blue-600">
             {totalProducts}
           </p>
 
-          <Link
-            to="/admin/products-man"
-            className="text-sm text-gray-600 underline" >
-            Manage Products
-          </Link>
+          <p className="text-sm text-gray-500 mt-1">
+            Products available in store
+          </p>
         </div>
 
-        <div className="w-80 h-32 bg-white rounded-lg p-5
-                     text-center shadow-md
-                     cursor-pointer
-                     transition transform hover:-translate-y-1" >
-
-          <h3 className="text-2xl text-gray-800 mb-1">
+         <div className="w-80 h-32 bg-white rounded-lg p-6
+                        text-center shadow-md">
+          <h3 className="text-2xl text-gray-800 mb-2">
             Total Users
           </h3>
 
-          <p className="text-2xl font-bold text-blue-600 my-1">
+          <p className="text-3xl font-bold text-blue-600">
             {totalUsers}
           </p>
 
-          <Link
-            to="/admin/users"
-            className="text-sm text-gray-600 underline" >
-            View Users List
-          </Link>
+          <p className="text-sm text-gray-500 mt-1">
+            Registered users
+          </p>
         </div>
 
-        <div
-          className="w-80 h-32 bg-white rounded-lg p-5
-                     text-center shadow-md
-                     cursor-pointer
-                     transition transform hover:-translate-y-1" >
-          <h3 className="text-2xl text-gray-800 mb-1">
+         <div className="w-80 h-32 bg-white rounded-lg p-6
+                        text-center shadow-md">
+          <h3 className="text-2xl text-gray-800 mb-2">
             Total Orders
           </h3>
 
-          <p className="text-2xl font-bold text-blue-600 my-1">
+          <p className="text-3xl font-bold text-blue-600">
             {totalOrders}
           </p>
 
-          <Link
-            to="/admin/orders"
-            className="text-sm text-gray-600 underline" >
-            View Orders
-          </Link>
+          <p className="text-sm text-gray-500 mt-1">
+            Orders placed so far
+          </p>
         </div>
+
       </div>
     </div>
   );

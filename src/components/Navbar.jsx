@@ -114,19 +114,6 @@ export default function Navbar({ isLoggedIn, setIsLoggedIn }) {
           </li>
         )}
 
-        <li>
-          <Link
-            to="/admin"
-            className="px-4 py-1 rounded-md
-                       border border-gray-500
-                       bg-white text-sm
-                       hover:bg-linear-to-b
-                       hover:from-blue-600 hover:to-green-400
-                       hover:text-white transition"
-          >
-            Admin
-          </Link>
-        </li>
       </ul>
     </nav>
   );

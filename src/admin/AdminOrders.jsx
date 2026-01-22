@@ -31,7 +31,7 @@ export default function AdminOrders() {
   return (
     <div
       className="min-h-screen p-8
-                 bg-linear-to-l from-emerald-400 to-teal-500">
+                 bg-red-50">
       <h2
         className="text-center text-4xl font-extrabold text-gray-800
                    mb-8 border-b-4 border-gray-800 inline-block pb-2">

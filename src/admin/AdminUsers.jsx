@@ -18,7 +18,7 @@ export default function AdminUsers() {
   return (
     <div
       className="min-h-screen p-3 sm:p-5 md:p-8 text-center
-                bg-linear-to-l from-emerald-300 to-teal-400">
+                bg-red-50">
       <h2
         className="text-2xl md:text-3xl font-extrabold text-purple-800
                    border-b-4 border-purple-800
