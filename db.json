@@ -10,13 +10,13 @@
       "id": "1"
     },
     {
-      "id": "2",
       "name": "Samsung S24",
       "price": 65000,
       "image": "http://localhost:5002/images/Galaxy.jpeg",
-      "specs": "8 GB RAM | 128 GB ROM 15.75 cm (6.2 inch) Full HD+ Display\n 50MP + 12MP | 12MP Front Camera \n4000 mAh Battery8 Gen 3 Processor",
+      "specs": "12 GB RAM | 128 GB ROM 15.75 cm (6.2 inch) Full HD+ Display\n 50MP + 12MP | 12MP Front Camera \n4000 mAh Battery8 Gen 3 Processor",
       "description": "Get a smartphone for yourself that can detect your moods and react appropriately. The Samsung Galaxy Ultra's potent processor and advanced camera sensor can handle low light and noise reduction. The phone's Snapdragon 8 Gen 2 processor, which also provides a long battery life to carry you through even the busiest days, also enables quick gaming and video streaming. You can also launch Expert RAW to take high-resolution RAW photos that are vivid and packed with information. Moreover, Dynamic AMOLED 2X offers clear, brilliant details in both bright and low-light conditions. Additionally, to smooth up gaming and save power, the refresh rate is automatically optimised with 120 Hz technology.",
-      "category": "Samsung"
+      "category": "Samsung",
+      "id": "2"
     },
     {
       "name": "Moto G 57power",
@@ -160,6 +160,17 @@
       "address": "kollemcode district kanyakumari",
       "pincode": "856001",
       "dob": "1994-06-19",
+      "isBlocked": false
+    },
+    {
+      "id": "ffb5",
+      "name": "john cena",
+      "email": "johncena@21gmail.com",
+      "password": "123456",
+      "phone": "7765444677",
+      "address": "hvjhvskcbsa",
+      "pincode": "7544333",
+      "dob": "2004-07-13",
       "isBlocked": false
     }
   ],
