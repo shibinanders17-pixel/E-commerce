@@ -160,7 +160,7 @@
       "address": "kollemcode district kanyakumari",
       "pincode": "856001",
       "dob": "1994-06-19",
-      "isBlocked": false
+      "isBlocked": true
     },
     {
       "id": "ffb5",
@@ -171,6 +171,17 @@
       "address": "hvjhvskcbsa",
       "pincode": "7544333",
       "dob": "2004-07-13",
+      "isBlocked": false
+    },
+    {
+      "id": "e6d5",
+      "name": "hjvh yjgvj",
+      "email": "djabkjdb@ajdbk",
+      "password": "123456",
+      "phone": "6576897087",
+      "address": "fchjmvmkk",
+      "pincode": "543321",
+      "dob": "2026-01-07",
       "isBlocked": false
     }
   ],

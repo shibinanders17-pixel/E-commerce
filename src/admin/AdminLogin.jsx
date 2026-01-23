@@ -3,69 +3,96 @@ import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 export default function AdminLogin() {
+  const navigate = useNavigate();
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+
+  const [isAdminLoggedIn, setIsAdminLoggedIn] = useState(
+    localStorage.getItem("isAdminLoggedIn") === "true"
+  );
 
   const handleLogin = async () => {
     try {
       const res = await api.get("/admin");
       const admin = res.data;
 
-      if (
-        username === admin.username &&
-        password === admin.password
-      ) {
-      
+      if (username === admin.username && password === admin.password) {
         localStorage.setItem("isAdminLoggedIn", "true");
 
-        alert("Login Successfully");
-        navigate("/admin/dashboard");
+        setIsAdminLoggedIn(true);
+
+        alert("Admin login successful");
       } else {
-        alert("Invalid Admin username / password");
+        alert("Invalid admin credentials");
       }
-    } catch (error) {
-      alert("Something went wrong");
-      console.log(error);
+    } catch (err) {
+      console.log(err);
+      alert("Login failed");
     }
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("isAdminLoggedIn");
+    setIsAdminLoggedIn(false);
   };
 
   return (
     <div className="min-h-screen flex items-center justify-center
-                    bg-linear-to-br from-blue-100 to-sky-50">
-      <div className="bg-white w-80 px-10 py-8
-                      rounded-xl shadow-xl text-center">
-        <h2 className="text-2xl font-bold text-gray-800 mb-5">
-          Admin Login
-        </h2>
+                    bg-linear-to-br from-blue-100 to-blue-200">
 
-        <input
-          type="text"
-          placeholder="Admin Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="w-full p-2 mb-3 border rounded-md text-sm
-                     outline-none focus:border-blue-600"
-        />
+      {!isAdminLoggedIn ? (
+        <div className="bg-white p-8 rounded-xl shadow-lg w-80 text-center">
+          <h2 className="text-2xl font-bold mb-4">Admin Login</h2>
 
-        <input
-          type="password"
-          placeholder="Admin Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-2 mb-4 border rounded-md text-sm
-                     outline-none focus:border-blue-600"
-        />
+          <input
+            type="text"
+            placeholder="Admin Username"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="w-full p-2 mb-3 border rounded" />
 
-        <button
-          onClick={handleLogin}
-          className="w-full py-2 bg-green-500
-                     text-white rounded-md text-sm
-                     hover:bg-blue-700 transition"
-        >
-          Login
-        </button>
-      </div>
+          <input
+            type="password"
+            placeholder="Admin Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-2 mb-4 border rounded" />
+
+          <button
+            onClick={handleLogin}
+            className="w-full bg-green-500 text-white py-2 rounded
+                       hover:bg-green-600">
+            Login
+          </button>
+        </div>
+
+        ) : (
+
+        <div className="bg-white p-10 rounded-xl shadow-lg text-center w-96">
+          <h1 className="text-3xl font-bold text-blue-800 mb-3">
+            Welcome to Admin Page !
+          </h1>
+
+          <p className="text-gray-600 mb-6">
+            You are currently logged in.
+          </p>
+
+          <button
+            onClick={() => navigate("/admin/dashboard")}
+            className="px-6 py-2 bg-blue-600 text-white rounded
+                       hover:bg-blue-700 mr-3">
+            Go to AdminPanel
+          </button>
+
+          <button
+            onClick={handleLogout}
+            className="px-6 py-2 bg-red-600 text-white rounded
+                       hover:bg-red-700" >
+            Logout
+          </button>
+        </div>
+      )}
     </div>
   );
 }

@@ -17,15 +17,12 @@ export default function ProductManager() {
   }, []);
 
   const fetchProducts = () => {
-    api
-      .get("/products")
-      .then((res) => setProducts(res.data))
+      api.get("/products").then((res) => setProducts(res.data))
       .catch((err) => console.log(err));
   };
 
   const filteredProducts = products.filter((product) => {
-    const matchesCategory =
-      selectedCategory === "All" ||
+    const matchesCategory = selectedCategory === "All" ||
       product.category === selectedCategory;
 
     const matchesSearch =
@@ -44,9 +41,7 @@ export default function ProductManager() {
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
-      api
-        .delete(`/products/${id}`)
-        .then(() => {
+       api.delete(`/products/${id}`).then(() => {
           alert("Product deleted");
           fetchProducts();
         })

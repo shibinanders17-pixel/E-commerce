@@ -49,10 +49,11 @@ export default function AppContent() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/success" element={<Success />} />
 
+          
           <Route path="/admin" element={<AdminLogin />} />
 
-          <Route path="/admin" element={<AdminProtectedRoute />}>
-            <Route element={<AdminLayout />}>
+          <Route element={<AdminProtectedRoute />}>
+          <Route path="admin" element={<AdminLayout />}>
             <Route path="dashboard" element={<AdminDashboard />} />
             <Route path="products-man" element={<ProductManager />} />
             <Route path="add-product" element={<AddProduct />} />
