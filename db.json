@@ -149,7 +149,8 @@
       "phone": "8838333261",
       "address": "thatheyupuram colony vallavilai",
       "pincode": "856543",
-      "dob": "1999-01-09"
+      "dob": "1999-01-09",
+      "isBlocked": false
     },
     {
       "id": "7ylb",

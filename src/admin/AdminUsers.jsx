@@ -18,9 +18,7 @@ export default function AdminUsers() {
   }, []);
 
   const toggleBlockUser = async (user) => {
-    const confirmMsg = user.isBlocked
-      ? "Unblock this user?"
-      : "Block this user?";
+    const confirmMsg = user.isBlocked? "Unblock this user?" : "Block this user?";
 
     if (!window.confirm(confirmMsg)) return;
 
@@ -29,6 +27,7 @@ export default function AdminUsers() {
         isBlocked: !user.isBlocked,
       });
       fetchUsers(); 
+      
       } catch (error) {
       console.log(error);
       alert("Action failed");
@@ -74,14 +73,12 @@ export default function AdminUsers() {
             ) : (
               users.map((user, index) => (
                 <tr key={user.id} className="hover:bg-purple-50">
-                  <td className="border px-3 py-2">{index + 1}</td>
-                  <td className="border px-3 py-2 font-medium">
-                    👤 {user.name}
-                  </td>
-                  <td className="border px-3 py-2">{user.email}</td>
-                  <td className="border px-3 py-2">{user.phone}</td>
-                  <td className="border px-3 py-2">{user.address}</td>
-                  <td className="border px-3 py-2">{user.pincode}</td>
+                  <td className="border px-3 py-2"> {index + 1} </td>
+                  <td className="border px-3 py-2 font-medium">👤 {user.name} </td>
+                  <td className="border px-3 py-2"> {user.email} </td>
+                  <td className="border px-3 py-2"> {user.phone} </td>
+                  <td className="border px-3 py-2"> {user.address} </td>
+                  <td className="border px-3 py-2"> {user.pincode} </td>
 
                   <td className="border px-3 py-2">
                     <span

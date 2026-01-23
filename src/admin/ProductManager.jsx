@@ -42,7 +42,7 @@ export default function ProductManager() {
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this product?")) {
        api.delete(`/products/${id}`).then(() => {
-          alert("Product deleted");
+          alert("Product deleted"); 
           fetchProducts();
         })
         .catch((err) => console.log(err));
