@@ -53,7 +53,7 @@ export default function AdminOrders() {
                 <th className="border px-4 py-3">ID</th>
                 <th className="border px-4 py-3">User</th>
                 <th className="border px-4 py-3">Product</th>
-                <th className="border px-4 py-3">Qty</th>
+                <th className="border px-4 py-3">Quantity</th>
                 <th className="border px-4 py-3">Total</th>
                 <th className="border px-4 py-3">Payment</th>
                 <th className="border px-4 py-3">Status</th>
