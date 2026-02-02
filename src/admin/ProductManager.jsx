@@ -73,14 +73,12 @@ export default function ProductManager() {
             onChange={(e) => setSearchText(e.target.value)}
             className="px-3 py-2 border rounded-md text-sm
                        w-60 outline-none
-                       focus:ring-2 focus:ring-purple-400"
-          />
+                       focus:ring-2 focus:ring-purple-400" />
 
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-3 py-2 border rounded-md text-sm"
-          >
+            className="px-3 py-2 border rounded-md text-sm" >
             <option value="All">All Brands</option>
             <option value="iPhone">iPhone</option>
             <option value="Samsung">Samsung</option>
@@ -95,8 +93,7 @@ export default function ProductManager() {
             onClick={() => navigate("/admin/add-product")}
             className="px-5 py-2 bg-green-600 text-white
                        rounded-md text-sm
-                       hover:bg-green-700"
-          >
+                       hover:bg-green-700" >
             + Add Product
           </button>
         </div>

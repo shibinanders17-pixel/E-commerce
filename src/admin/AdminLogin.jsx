@@ -50,14 +50,14 @@ export default function AdminLogin() {
             placeholder="Admin Username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            className="w-full p-2 mb-3 border rounded" />
+            className="w-full p-2 mb-3 border rounded"  />
 
           <input
             type="password"
             placeholder="Admin Password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full p-2 mb-4 border rounded" />
+            className="w-full p-2 mb-4 border rounded"  />
 
           <button
             onClick={handleLogin}
@@ -75,7 +75,7 @@ export default function AdminLogin() {
           </h1>
 
           <p className="text-gray-600 mb-6">
-            You are currently logged in.
+            You are currently logged in
           </p>
 
           <button
