@@ -27,7 +27,7 @@ export default function AdminUsers() {
         isBlocked: !user.isBlocked,
       });
       fetchUsers(); 
-      
+       
       } catch (error) {
       console.log(error);
       alert("Action failed");
