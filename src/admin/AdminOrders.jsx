@@ -51,7 +51,7 @@ export default function AdminOrders() {
             <thead>
               <tr className="bg-gray-100">
                 <th className="border px-4 py-3">ID</th>
-                <th className="border px-4 py-3">User</th>
+                <th className="border px-4 py-3">User-Name</th>
                 <th className="border px-4 py-3">Product</th>
                 <th className="border px-4 py-3">Quantity</th>
                 <th className="border px-4 py-3">Total</th>
