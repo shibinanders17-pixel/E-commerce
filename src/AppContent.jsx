@@ -10,13 +10,17 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Checkout from "./pages/Checkout";
 import Success from "./pages/Success";
+import Wishlist from "./context/Wishlist";
+import Orders from "./pages/Orders";
+import Footer from "./components/Footer";
 
 import CartProvider from "./context/CartContext";
 import SearchProvider from "./context/SearchContext";
+import WishlistProvider from "./context/WishlistContext";
 
 import AdminLogin from "./admin/AdminLogin";
 import AdminProtectedRoute from "./admin/AdminProtectedRoute";
-import AdminLayout from "./admin/AdminLayout"
+import AdminLayout from "./admin/AdminLayout";
 import AdminDashboard from "./admin/AdminDashboard";
 import ProductManager from "./admin/ProductManager";
 import AddProduct from "./admin/AddProduct";
@@ -26,47 +30,57 @@ import UserDetails from "./admin/UserDetails";
 import AdminOrders from "./admin/AdminOrders";
 
 export default function AppContent() {
+
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn") === "true"
   );
 
   const location = useLocation();
+  console.log(location)
+
   const shouldHideNavbar =
-  location.pathname.startsWith("/admin") || location.pathname === "/login" || location.pathname === "/register";
+    location.pathname.startsWith("/admin") ||
+    location.pathname === "/login" ||
+    location.pathname === "/register";
 
   return (
     <SearchProvider>
-      <CartProvider>
+      <WishlistProvider>
+        <CartProvider>
 
-      {!shouldHideNavbar ? ( <Navbar
-          isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn}/>) : null }
+          {!shouldHideNavbar ? (
+            <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+          ) : null}
 
-        <Routes>
-          <Route path="/" element={<Products />} />
-          <Route path="/productsDet/:id" element={<ProductsDetails />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/checkout" element={<Checkout />} />
-          <Route path="/success" element={<Success />} />
+          <Routes>
+            <Route path="/" element={<Products />} />
+            <Route path="/productsDet/:id" element={<ProductsDetails />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/success" element={<Success />} />
+            <Route path="/orders" element={<Orders />} />
+            
 
-          
-          <Route path="/admin" element={<AdminLogin />} />
+            <Route path="/admin" element={<AdminLogin />} />
 
-          <Route element={<AdminProtectedRoute />}>
-          <Route path="admin" element={<AdminLayout />}>
-            <Route path="dashboard" element={<AdminDashboard />} />
-            <Route path="products-man" element={<ProductManager />} />
-            <Route path="add-product" element={<AddProduct />} />
-            <Route path="edit-product/:id" element={<EditProduct />} />
-            <Route path="users" element={<AdminUsers />} />
-            <Route path="users/:id" element={<UserDetails />} />
-            <Route path="orders" element={<AdminOrders />} />
-          </Route>
-         </Route>
-        </Routes>
-
-      </CartProvider>
+            <Route element={<AdminProtectedRoute />}>
+              <Route path="admin" element={<AdminLayout />}>
+                <Route path="dashboard" element={<AdminDashboard />} />
+                <Route path="products-man" element={<ProductManager />} />
+                <Route path="add-product" element={<AddProduct />} />
+                <Route path="edit-product/:id" element={<EditProduct />} />
+                <Route path="users" element={<AdminUsers />} />
+                <Route path="users/:id" element={<UserDetails />} />
+                <Route path="orders" element={<AdminOrders />} />
+              </Route>
+            </Route>
+          </Routes>
+          <Footer />
+        </CartProvider>
+      </WishlistProvider>
     </SearchProvider>
   );
 }

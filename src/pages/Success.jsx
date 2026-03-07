@@ -1,3 +1,4 @@
+
 import { Link } from "react-router-dom";
 
 export default function Success() {
@@ -30,7 +31,9 @@ export default function Success() {
             Continue Shopping
           </button>
         </Link>
+
       </div>
+
     </div>
   );
 }

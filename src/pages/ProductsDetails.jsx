@@ -1,101 +1,258 @@
+
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import api from "../services/api";
 import { CartContext } from "../context/CartContext";
+import { WishlistContext } from "../context/WishlistContext";
 
 export default function ProductsDetails() {
+
   const { id } = useParams();
   const navigate = useNavigate();
+
   const { cart, addToCart, removeFromCart } = useContext(CartContext);
+  const { isInWishlist, addToWishlist, removeFromWishlist } = useContext(WishlistContext);
 
   const [product, setProduct] = useState(null);
+  const [selectedImg, setSelectedImg] = useState(0);
+
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
   useEffect(() => {
-    api.get(`/products/${id}`).then((res) => {
-      setProduct(res.data);
-    });
+    const fetchProduct = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        const res = await api.get(`/users/products/${id}`, {
+          headers: { Authorization: token }
+        });
+        setProduct(res.data);
+        setSelectedImg(0);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchProduct();
   }, [id]);
 
   if (!product) {
-    return <h2 className="p-5">Loading product...</h2>;
+    return (
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-12 h-12 border-4 border-red-500 border-t-transparent
+                          rounded-full animate-spin mx-auto mb-4" />
+          <p className="text-gray-500">Loading product...</p>
+        </div>
+      </div>
+    );
   }
 
-  const isInCart = cart.some(item => item.id === product.id);
+  const isInCart = cart.some(item => item._id === product._id);
+  const wishlisted = isInWishlist(product._id);
+
+  // 4 thumbnails — same image repeat pannurom
+  const thumbnails = [
+    `http://localhost:5002${product.image}`,
+    `http://localhost:5002${product.image}`,
+    `http://localhost:5002${product.image}`,
+    `http://localhost:5002${product.image}`,
+  ];
 
   const handleAddToCart = () => {
-    if (!isLoggedIn) {
-      navigate("/login");
-      return;
-    }
-    isInCart ? removeFromCart(product.id) : addToCart(product);
+    if (!isLoggedIn) { navigate("/login"); return; }
+    isInCart ? removeFromCart(product._id) : addToCart(product);
   };
 
   const handleBuyNow = () => {
-    if (!isLoggedIn) {
-      navigate("/login");
-      return;
-    }
+    if (!isLoggedIn) { navigate("/login"); return; }
     navigate("/checkout", { state: { product } });
   };
 
+  const handleWishlist = () => {
+    if (!isLoggedIn) { navigate("/login"); return; }
+    wishlisted ? removeFromWishlist(product._id) : addToWishlist(product);
+  };
+
   return (
-      <div className="max-w-full md:max-w-5xl mx-auto my-6 p-4 md:p-6
-                flex flex-col md:flex-row gap-6
-                bg-white rounded-xl shadow-md"
-                >
+    <div className="bg-gray-100 min-h-screen py-6 px-4 md:px-10">
 
-     <div>
-        <img
-          src={product.image}
-          alt={product.name}
-          className="w-full max-w-70 md:w-72
-             rounded-lg object-contain"
-        />
-      </div>
+      {/* Breadcrumb */}
+      <p className="text-sm text-gray-400 mb-4">
+        <span
+          className="hover:text-red-500 cursor-pointer"
+          onClick={() => navigate("/")}
+        >
+          Home
+        </span>
+        <span className="mx-2">/</span>
+        <span className="text-gray-600">{product.name}</span>
+      </p>
 
-      <div className="flex-1">
-        <h2 className="text-[26px] text-gray-800 m-0">
-          {product.name}
-        </h2>
+      {/* Main Card */}
+      <div className="bg-white rounded-2xl shadow-sm
+                      flex flex-col md:flex-row gap-0 overflow-hidden
+                      max-w-5xl mx-auto">
 
-        <p className="text-[22px] font-bold text-red-600 my-2">
-          ₹ {product.price.toLocaleString("en-IN")}
-        </p>
+        {/* Left - Image Section */}
+        <div className="md:w-2/5 bg-gray-50 flex flex-row
+                        border-r border-gray-100 p-4 gap-3">
 
-        <div className="bg-gray-100 p-3 rounded-lg
-                        my-2 text-sm leading-relaxed">
-          {product.specs?.split("\n").map((line, index) => (
-            <p key={index}>{line}</p>
-          ))}
+          {/* Thumbnails - left side vertical */}
+          <div className="flex flex-col gap-2">
+            {thumbnails.map((img, index) => (
+              <div
+                key={index}
+                onClick={() => setSelectedImg(index)}
+                className={`w-16 h-16 rounded-lg border-2 cursor-pointer
+                            flex items-center justify-center bg-white
+                            transition-all duration-200
+                  ${selectedImg === index
+                    ? "border-red-500 shadow-md"
+                    : "border-gray-200 hover:border-red-300"
+                  }`}
+              >
+                <img
+                  src={img}
+                  alt={`thumb-${index}`}
+                  className="w-12 h-12 object-contain"
+                />
+              </div>
+            ))}
+          </div>
+
+          {/* Main Image */}
+          <div className="flex-1 flex flex-col items-center justify-between">
+
+            <div className="flex items-center justify-center flex-1 p-4">
+              <img
+                src={thumbnails[selectedImg]}
+                alt={product.name}
+                className="w-full max-w-xs object-contain
+                           hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+
+            {/* Action Buttons below image */}
+            <div className="flex gap-3 w-full mt-4">
+
+              <button
+                onClick={handleAddToCart}
+                className={`flex-1 py-3 rounded-xl font-semibold text-sm
+                            flex items-center justify-center gap-2 transition
+                  ${isInCart
+                    ? "bg-green-500 text-white"
+                    : "bg-white border-2 border-red-500 text-red-500 hover:bg-red-50"
+                  }`}
+              >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                {isInCart ? "Added ✓" : "Add to Cart"}
+              </button>
+
+              <button
+                onClick={handleBuyNow}
+                className="flex-1 py-3 rounded-xl font-semibold text-sm
+                           bg-red-500 text-white hover:bg-red-600
+                           flex items-center justify-center gap-2 transition"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg"
+                  className="h-5 w-5" fill="none"
+                  viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                Buy Now
+              </button>
+
+            </div>
+
+          </div>
+
         </div>
 
-        <p className="mt-2 text-gray-600 leading-relaxed">
-          {product.description}
-        </p>
+        {/* Right - Product Info */}
+        <div className="flex-1 p-6 md:p-8">
 
-        <div className="mt-5 flex flex-col sm:flex-row gap-3">
-          <button
-            onClick={handleAddToCart}
-            className={`px-4 py-2 rounded-md text-sm mr-2
-              ${
-                isInCart
-                  ? "bg-green-500 text-white cursor-not-allowed"
-                  : "bg-orange-500 text-white hover:bg-orange-600"
-              }`}
-          >
-            {isInCart ? "Added ✓" : "Add to Cart"}
-          </button>
+          {/* Name + Wishlist */}
+          <div className="flex items-start justify-between gap-4">
+            <h1 className="text-2xl font-bold text-gray-800 leading-snug">
+              {product.name}
+            </h1>
+            <button
+              onClick={handleWishlist}
+              title={wishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
+              className="mt-1 shrink-0"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg"
+                className={`h-7 w-7 transition
+                  ${wishlisted
+                    ? "fill-red-500 stroke-red-500"
+                    : "fill-none stroke-gray-400 hover:stroke-red-400"
+                  }`}
+                viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </button>
+          </div>
 
-          <button
-            onClick={handleBuyNow}
-            className="px-4 py-2 rounded-md text-sm
-                       bg-green-600 text-white
-                       hover:bg-green-700">
-            Buy Now
-          </button>
+          {/* Price */}
+          <p className="text-3xl font-bold text-red-500 mt-3">
+            ₹ {product.price.toLocaleString("en-IN")}
+          </p>
+
+          <div className="w-full h-px bg-gray-100 my-4" />
+
+          {/* Specs */}
+          {product.specs && (
+            <>
+              <h3 className="text-sm font-semibold text-gray-500 uppercase
+                             tracking-wider mb-3">
+                Specifications
+              </h3>
+              <div className="bg-gray-50 rounded-xl p-4 text-sm
+                              text-gray-700 leading-relaxed space-y-1">
+                {product.specs.split("\n").map((line, index) => (
+                  <div key={index} className="flex items-start gap-2">
+                    <span className="text-red-400 mt-1">•</span>
+                    <span>{line}</span>
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
+
+          {/* Description */}
+          {product.description && (
+            <>
+              <h3 className="text-sm font-semibold text-gray-500 uppercase
+                             tracking-wider mt-5 mb-2">
+                Description
+              </h3>
+              <p className="text-sm text-gray-600 leading-relaxed">
+                {product.description}
+              </p>
+            </>
+          )}
+
+          {/* Category badge */}
+          {product.category && (
+            <div className="mt-5">
+              <span className="inline-block bg-red-50 text-red-500
+                               text-xs font-semibold px-3 py-1 rounded-full
+                               border border-red-200">
+                {product.category}
+              </span>
+            </div>
+          )}
+
         </div>
+
       </div>
+
     </div>
   );
 }
