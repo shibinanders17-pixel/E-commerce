@@ -10,7 +10,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Checkout from "./pages/Checkout";
 import Success from "./pages/Success";
-import Wishlist from "./context/Wishlist";
+import Wishlist from "./pages/Wishlist";
 import Orders from "./pages/Orders";
 import Footer from "./components/Footer";
 

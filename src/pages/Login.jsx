@@ -38,7 +38,7 @@ export default function Login({ setIsLoggedIn }) {
       localStorage.setItem("isLoggedIn", "true");
       setIsLoggedIn(true);
 
-      alert("Login successful 🎉");
+      alert("Login successfully 🎉");
       navigate("/");
 
     } catch (error) {

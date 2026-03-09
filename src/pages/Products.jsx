@@ -13,7 +13,7 @@ const getFakeRating = (id) => {
 };
 
 const getFakeReviews = (id) => {
-  const hash = id ? id.charCodeAt(0) % 10 : 0;
+  const hash = id ? id.charCodeAt(id.length - 1) % 10 : 0;
   return [1200, 2300, 3400, 4500, 5600, 6700, 7800, 8900, 9100, 10200][hash];
 };
 
