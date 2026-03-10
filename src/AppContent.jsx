@@ -36,7 +36,6 @@ export default function AppContent() {
   );
 
   const location = useLocation();
-  console.log(location)
 
   const shouldHideNavbar =
     location.pathname.startsWith("/admin") ||

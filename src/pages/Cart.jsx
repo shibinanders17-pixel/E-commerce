@@ -1,4 +1,3 @@
-
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
@@ -42,19 +41,16 @@ export default function Cart() {
   }
 
   const handleBuyNow = (item) => {
-    // Single product — pass as product (Buy Now flow)
     navigate("/checkout", { state: { product: item } });
   };
 
   const handlePlaceOrder = () => {
-    // Full cart — pass as cartItems (Place Order flow)
     navigate("/checkout", { state: { cartItems: cart } });
   };
 
   return (
     <div className="bg-gray-100 min-h-screen py-6 px-4 md:px-10">
 
-      {/* Breadcrumb */}
       <p className="text-sm text-gray-400 mb-4">
         <span
           className="hover:text-red-500 cursor-pointer transition"
@@ -75,7 +71,6 @@ export default function Cart() {
 
       <div className="flex flex-col lg:flex-row gap-6">
 
-        {/* Cart Items */}
         <div className="flex-1 flex flex-col gap-4">
 
           {cart.map((item) => {
@@ -87,7 +82,6 @@ export default function Cart() {
                            flex flex-col sm:flex-row gap-4 items-start"
               >
 
-                {/* Image */}
                 <div className="w-28 h-28 shrink-0 bg-gray-50
                                 rounded-xl flex items-center justify-center">
                   <img
@@ -97,7 +91,6 @@ export default function Cart() {
                   />
                 </div>
 
-                {/* Details */}
                 <div className="flex-1">
 
                   <h3 className="text-base font-semibold text-gray-800">
@@ -108,7 +101,6 @@ export default function Cart() {
                     ₹ {item.price.toLocaleString("en-IN")}
                   </p>
 
-                  {/* Qty controls */}
                   <div className="flex items-center gap-3 mt-3">
                     <span className="text-sm text-gray-500">Qty:</span>
                     <div className="flex items-center border border-gray-300
@@ -133,7 +125,7 @@ export default function Cart() {
                     </div>
                   </div>
 
-                  {/* Subtotal + Buttons */}
+
                   <div className="flex flex-wrap items-center
                                   justify-between mt-4 gap-3">
 

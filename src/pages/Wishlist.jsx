@@ -49,7 +49,6 @@ export default function Wishlist() {
   return (
     <div className="min-h-screen bg-gray-100">
 
-      {/* Header */}
       <div className="bg-white shadow-sm px-4 md:px-8 py-4 flex items-center gap-4">
         <button
           onClick={() => navigate("/")}
@@ -65,7 +64,7 @@ export default function Wishlist() {
         </h1>
       </div>
 
-      {/* Wishlist Items */}
+
       <div className="px-4 md:px-8 py-5 flex flex-col gap-3 max-w-5xl mx-auto">
         {wishlist.map((item) => {
           const rating = getFakeRating(item._id);
@@ -81,7 +80,6 @@ export default function Wishlist() {
               className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col sm:flex-row gap-4 p-4 md:p-5"
             >
 
-              {/* Image */}
               <div
                 className="shrink-0 w-full sm:w-44 h-44 flex items-center justify-center bg-gray-50 rounded-xl cursor-pointer"
                 onClick={() => navigate(`/productsDet/${item._id}`)}
@@ -93,10 +91,8 @@ export default function Wishlist() {
                 />
               </div>
 
-              {/* Details */}
               <div className="flex-1 min-w-0">
 
-                {/* Name */}
                 <h3
                   className="text-base font-semibold text-blue-600 hover:underline cursor-pointer line-clamp-2 mb-1"
                   onClick={() => navigate(`/productsDet/${item._id}`)}
@@ -104,14 +100,12 @@ export default function Wishlist() {
                   {item.name}
                 </h3>
 
-                {/* Category */}
                 {item.category && (
                   <span className="inline-block bg-red-50 text-red-500 text-xs font-semibold px-2 py-0.5 rounded-full border border-red-200 mb-2">
                     {item.category}
                   </span>
                 )}
 
-                {/* Rating */}
                 <div className="flex items-center gap-2 mb-2">
                   <span className="bg-green-600 text-white text-xs font-bold px-2 py-0.5 rounded flex items-center gap-1">
                     {rating} ★
@@ -123,10 +117,8 @@ export default function Wishlist() {
 
               </div>
 
-              {/* Price + Buttons */}
               <div className="flex flex-col sm:items-end justify-between sm:min-w-44 gap-3">
 
-                {/* Price */}
                 <div className="sm:text-right">
                   <p className="text-2xl font-bold text-gray-900">
                     ₹{item.price.toLocaleString("en-IN")}
@@ -145,10 +137,8 @@ export default function Wishlist() {
                   )}
                 </div>
 
-                {/* Buttons */}
                 <div className="flex flex-col gap-2 w-full">
 
-                  {/* Move to Cart */}
                   <button
                     onClick={() => handleMoveToCart(item)}
                     className={`w-full py-2 rounded-lg text-sm font-semibold border transition
@@ -159,7 +149,6 @@ export default function Wishlist() {
                     {inCart ? "Already in Cart ✓" : "🛒 Move to Cart"}
                   </button>
 
-                  {/* Buy Now */}
                   <button
                     onClick={() => handleBuyNow(item)}
                     className="w-full py-2 rounded-lg text-sm font-semibold bg-red-500 text-white hover:bg-red-600 transition"
@@ -167,7 +156,6 @@ export default function Wishlist() {
                     Buy Now
                   </button>
 
-                  {/* Remove */}
                   <button
                     onClick={() => removeFromWishlist(item._id)}
                     className="w-full py-2 rounded-lg text-sm font-semibold border border-gray-300 text-gray-500 hover:border-red-400 hover:text-red-500 transition"

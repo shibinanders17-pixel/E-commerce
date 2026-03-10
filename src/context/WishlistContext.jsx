@@ -1,20 +1,15 @@
-
-
 import { createContext, useState, useEffect } from "react";
 import api from "../services/api";
 
 export const WishlistContext = createContext();
 
 export default function WishlistProvider({ children }) {
-
   const [wishlist, setWishlist] = useState([]);
 
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  const token = localStorage.getItem("token");
 
-  // ─── Fetch wishlist from DB on login ──────────────────────
   useEffect(() => {
-    if (isLoggedIn && token) {
+    if (isLoggedIn) {
       fetchWishlist();
     } else {
       setWishlist([]);
@@ -23,14 +18,12 @@ export default function WishlistProvider({ children }) {
 
   const fetchWishlist = async () => {
     try {
-      const res = await api.get("/users/wishlist", {
-        headers: { Authorization: token }
-      });
+      const res = await api.get("/users/wishlist");
       const mapped = res.data.map(item => ({
-        _id: item.productId,
-        name: item.name,
-        price: item.price,
-        image: item.image,
+        _id:      item.productId,
+        name:     item.name,
+        price:    item.price,
+        image:    item.image,
         category: item.category
       }));
       setWishlist(mapped);
@@ -43,12 +36,10 @@ export default function WishlistProvider({ children }) {
     try {
       await api.post("/users/wishlist", {
         productId: product._id,
-        name: product.name,
-        price: product.price,
-        image: product.image,
-        category: product.category
-      }, {
-        headers: { Authorization: token }
+        name:      product.name,
+        price:     product.price,
+        image:     product.image,
+        category:  product.category
       });
       setWishlist(prev => [...prev, product]);
     } catch (error) {
@@ -58,9 +49,7 @@ export default function WishlistProvider({ children }) {
 
   const removeFromWishlist = async (id) => {
     try {
-      await api.delete(`/users/wishlist/${id}`, {
-        headers: { Authorization: token }
-      });
+      await api.delete(`/users/wishlist/${id}`);
       setWishlist(prev => prev.filter(item => item._id !== id));
     } catch (error) {
       console.log("Remove from wishlist error:", error);
@@ -70,6 +59,7 @@ export default function WishlistProvider({ children }) {
   const isInWishlist = (id) => {
     return wishlist.some(item => item._id === id);
   };
+
 
   return (
     <WishlistContext.Provider

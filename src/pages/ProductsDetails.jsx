@@ -1,4 +1,3 @@
-
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import api from "../services/api";
@@ -14,7 +13,14 @@ export default function ProductsDetails() {
   const { isInWishlist, addToWishlist, removeFromWishlist } = useContext(WishlistContext);
 
   const [product, setProduct] = useState(null);
-  const [selectedImg, setSelectedImg] = useState(0);
+  const [selectedView, setSelectedView] = useState(0);
+
+  const imageViews = [
+    { transform: "scale-100",                         label: "Front" },
+    { transform: "scale-150",                         label: "Zoom"  },
+    { transform: "scale-150 translate-x-8",           label: "Right" },
+    { transform: "scale-150 -translate-x-8",          label: "Left"  },
+  ];
 
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
@@ -26,7 +32,6 @@ export default function ProductsDetails() {
           headers: { Authorization: token }
         });
         setProduct(res.data);
-        setSelectedImg(0);
       } catch (error) {
         console.log(error);
       }
@@ -49,14 +54,6 @@ export default function ProductsDetails() {
   const isInCart = cart.some(item => item._id === product._id);
   const wishlisted = isInWishlist(product._id);
 
-  // 4 thumbnails — same image repeat pannurom
-  const thumbnails = [
-    `http://localhost:5002${product.image}`,
-    `http://localhost:5002${product.image}`,
-    `http://localhost:5002${product.image}`,
-    `http://localhost:5002${product.image}`,
-  ];
-
   const handleAddToCart = () => {
     if (!isLoggedIn) { navigate("/login"); return; }
     isInCart ? removeFromCart(product._id) : addToCart(product);
@@ -77,10 +74,7 @@ export default function ProductsDetails() {
 
       {/* Breadcrumb */}
       <p className="text-sm text-gray-400 mb-4">
-        <span
-          className="hover:text-red-500 cursor-pointer"
-          onClick={() => navigate("/")}
-        >
+        <span className="hover:text-red-500 cursor-pointer" onClick={() => navigate("/")}>
           Home
         </span>
         <span className="mx-2">/</span>
@@ -88,85 +82,70 @@ export default function ProductsDetails() {
       </p>
 
       {/* Main Card */}
-      <div className="bg-white rounded-2xl shadow-sm
-                      flex flex-col md:flex-row gap-0 overflow-hidden
-                      max-w-5xl mx-auto">
+      <div className="bg-white rounded-2xl shadow-sm flex flex-col md:flex-row gap-0 overflow-hidden max-w-5xl mx-auto">
 
         {/* Left - Image Section */}
-        <div className="md:w-2/5 bg-gray-50 flex flex-row
-                        border-r border-gray-100 p-4 gap-3">
+        <div className="md:w-2/5 bg-gray-50 flex flex-row border-r border-gray-100 p-4 gap-3">
 
-          {/* Thumbnails - left side vertical */}
+          {/* Thumbnails - vertical left */}
           <div className="flex flex-col gap-2">
-            {thumbnails.map((img, index) => (
+            {imageViews.map((view, index) => (
               <div
                 key={index}
-                onClick={() => setSelectedImg(index)}
+                onClick={() => setSelectedView(index)}
                 className={`w-16 h-16 rounded-lg border-2 cursor-pointer
-                            flex items-center justify-center bg-white
+                            flex items-center justify-center bg-white overflow-hidden
                             transition-all duration-200
-                  ${selectedImg === index
+                  ${selectedView === index
                     ? "border-red-500 shadow-md"
-                    : "border-gray-200 hover:border-red-300"
-                  }`}
+                    : "border-gray-200 hover:border-red-300"}`}
               >
                 <img
-                  src={img}
-                  alt={`thumb-${index}`}
-                  className="w-12 h-12 object-contain"
+                  src={`http://localhost:5002${product.image}`}
+                  alt={view.label}
+                  className={`w-12 h-12 object-contain transition-transform duration-300 ${view.transform}`}
                 />
               </div>
             ))}
           </div>
 
-          {/* Main Image */}
-          <div className="flex-1 flex flex-col items-center justify-between">
+          {/* Main Image + Buttons */}
+          <div className="flex-1 flex flex-col justify-between">
 
-            <div className="flex items-center justify-center flex-1 p-4">
+            {/* Main Image */}
+            <div className="flex items-center justify-center flex-1 overflow-hidden rounded-xl p-2">
               <img
-                src={thumbnails[selectedImg]}
+                src={`http://localhost:5002${product.image}`}
                 alt={product.name}
-                className="w-full max-w-xs object-contain
-                           hover:scale-105 transition-transform duration-300"
+                className={`w-full max-w-xs object-contain transition-transform duration-500 ${imageViews[selectedView].transform}`}
               />
             </div>
 
-            {/* Action Buttons below image */}
-            <div className="flex gap-3 w-full mt-4">
-
+            {/* Buttons */}
+            <div className="flex gap-3 mt-4">
               <button
                 onClick={handleAddToCart}
                 className={`flex-1 py-3 rounded-xl font-semibold text-sm
                             flex items-center justify-center gap-2 transition
                   ${isInCart
                     ? "bg-green-500 text-white"
-                    : "bg-white border-2 border-red-500 text-red-500 hover:bg-red-50"
-                  }`}
+                    : "bg-white border-2 border-red-500 text-red-500 hover:bg-red-50"}`}
               >
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5" fill="none"
-                  viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                    d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
                 {isInCart ? "Added ✓" : "Add to Cart"}
               </button>
 
               <button
                 onClick={handleBuyNow}
-                className="flex-1 py-3 rounded-xl font-semibold text-sm
-                           bg-red-500 text-white hover:bg-red-600
-                           flex items-center justify-center gap-2 transition"
+                className="flex-1 py-3 rounded-xl font-semibold text-sm bg-red-500 text-white hover:bg-red-600 flex items-center justify-center gap-2 transition"
               >
-                <svg xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5" fill="none"
-                  viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
                 Buy Now
               </button>
-
             </div>
 
           </div>
@@ -181,17 +160,9 @@ export default function ProductsDetails() {
             <h1 className="text-2xl font-bold text-gray-800 leading-snug">
               {product.name}
             </h1>
-            <button
-              onClick={handleWishlist}
-              title={wishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
-              className="mt-1 shrink-0"
-            >
+            <button onClick={handleWishlist} title={wishlisted ? "Remove from Wishlist" : "Add to Wishlist"} className="mt-1 shrink-0">
               <svg xmlns="http://www.w3.org/2000/svg"
-                className={`h-7 w-7 transition
-                  ${wishlisted
-                    ? "fill-red-500 stroke-red-500"
-                    : "fill-none stroke-gray-400 hover:stroke-red-400"
-                  }`}
+                className={`h-7 w-7 transition ${wishlisted ? "fill-red-500 stroke-red-500" : "fill-none stroke-gray-400 hover:stroke-red-400"}`}
                 viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
                   d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -209,12 +180,10 @@ export default function ProductsDetails() {
           {/* Specs */}
           {product.specs && (
             <>
-              <h3 className="text-sm font-semibold text-gray-500 uppercase
-                             tracking-wider mb-3">
+              <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">
                 Specifications
               </h3>
-              <div className="bg-gray-50 rounded-xl p-4 text-sm
-                              text-gray-700 leading-relaxed space-y-1">
+              <div className="bg-gray-50 rounded-xl p-4 text-sm text-gray-700 leading-relaxed space-y-1">
                 {product.specs.split("\n").map((line, index) => (
                   <div key={index} className="flex items-start gap-2">
                     <span className="text-red-400 mt-1">•</span>
@@ -228,8 +197,7 @@ export default function ProductsDetails() {
           {/* Description */}
           {product.description && (
             <>
-              <h3 className="text-sm font-semibold text-gray-500 uppercase
-                             tracking-wider mt-5 mb-2">
+              <h3 className="text-sm font-semibold text-gray-500 uppercase tracking-wider mt-5 mb-2">
                 Description
               </h3>
               <p className="text-sm text-gray-600 leading-relaxed">
@@ -241,9 +209,7 @@ export default function ProductsDetails() {
           {/* Category badge */}
           {product.category && (
             <div className="mt-5">
-              <span className="inline-block bg-red-50 text-red-500
-                               text-xs font-semibold px-3 py-1 rounded-full
-                               border border-red-200">
+              <span className="inline-block bg-red-50 text-red-500 text-xs font-semibold px-3 py-1 rounded-full border border-red-200">
                 {product.category}
               </span>
             </div>

@@ -12,9 +12,8 @@ export default function Checkout() {
 
   const { fetchCart } = useContext(CartContext);
 
-  // Buy Now → product, Place Order → cartItems
   const singleProduct = location.state?.product;
-  const cartItems     = location.state?.cartItems;
+  const cartItems     = location.state?.cartItems;  
 
   const orderProducts = singleProduct
     ? [{ ...singleProduct, qty: singleProduct.qty || 1 }]
@@ -100,7 +99,7 @@ export default function Checkout() {
   return (
     <div className="min-h-screen bg-gray-100 py-6 px-4 md:px-10">
 
-      {/* Breadcrumb */}
+
       <p className="text-sm text-gray-400 mb-4">
         <span className="hover:text-red-500 cursor-pointer" onClick={() => navigate("/cart")}>
           Cart
@@ -111,10 +110,8 @@ export default function Checkout() {
 
       <div className="max-w-5xl mx-auto grid md:grid-cols-3 gap-6">
 
-        {/* Left - Delivery + Payment */}
         <div className="md:col-span-2 flex flex-col gap-5">
 
-          {/* Delivery Details */}
           <div className="bg-white rounded-2xl shadow-sm p-6">
 
             <div className="flex items-center gap-2 mb-4">
@@ -158,7 +155,6 @@ export default function Checkout() {
 
           </div>
 
-          {/* Payment Method */}
           <div className="bg-white rounded-2xl shadow-sm p-6">
 
             <div className="flex items-center gap-2 mb-4">
@@ -197,10 +193,8 @@ export default function Checkout() {
 
         </div>
 
-        {/* Right - Order Summary */}
         <div className="flex flex-col gap-5">
 
-          {/* Products List */}
           <div className="bg-white rounded-2xl shadow-sm p-5">
 
             <div className="flex items-center gap-2 mb-4">
@@ -241,7 +235,6 @@ export default function Checkout() {
 
           </div>
 
-          {/* Price Breakdown */}
           <div className="bg-white rounded-2xl shadow-sm p-5">
 
             <h3 className="text-sm font-bold text-gray-500 uppercase

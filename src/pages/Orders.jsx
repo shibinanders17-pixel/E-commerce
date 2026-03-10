@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
@@ -10,7 +9,6 @@ export default function Orders() {
   const navigate = useNavigate();
 
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
-  const token = localStorage.getItem("token");
 
   useEffect(() => {
     if (!isLoggedIn) {
@@ -22,14 +20,21 @@ export default function Orders() {
 
   const fetchOrders = async () => {
     try {
-      const res = await api.get("/users/orders", {
-        headers: { Authorization: token }
-      });
+      const res = await api.get("/users/orders");
       setOrders(res.data);
     } catch (error) {
       console.log("Orders fetch error:", error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const cancelOrder = async (orderId) => {
+    try {
+      await api.put(`/users/orders/${orderId}/cancel`);
+      fetchOrders();
+    } catch (error) {
+      console.log("Cancel error:", error);
     }
   };
 
@@ -79,7 +84,6 @@ export default function Orders() {
   return (
     <div className="bg-gray-100 min-h-screen py-6 px-4 md:px-10">
 
-      {/* Breadcrumb */}
       <p className="text-sm text-gray-400 mb-4">
         <span
           className="hover:text-red-500 cursor-pointer transition"
@@ -91,7 +95,6 @@ export default function Orders() {
         <span className="text-gray-600 font-medium">My Orders</span>
       </p>
 
-      {/* Header */}
       <div className="flex items-center gap-2 mb-6">
         <div className="w-1 h-7 bg-red-500 rounded-full" />
         <h2 className="text-xl font-bold text-gray-800">
@@ -102,7 +105,6 @@ export default function Orders() {
         </h2>
       </div>
 
-      {/* Orders List */}
       <div className="flex flex-col gap-4 max-w-4xl mx-auto">
 
         {orders.map((order, index) => (
@@ -112,7 +114,6 @@ export default function Orders() {
                        hover:shadow-md transition-shadow"
           >
 
-            {/* Order Header */}
             <div className="flex flex-wrap items-center justify-between
                             gap-3 mb-4 pb-3 border-b border-gray-100">
               <div>
@@ -120,23 +121,34 @@ export default function Orders() {
                   Order #{orders.length - index}
                 </p>
                 <p className="text-xs text-gray-400 mt-0.5">
-                  📅 {order.orderDate}
+                  📅 {new Date(order.purchaseDate).toLocaleString()}
                 </p>
               </div>
-              <span className={`text-xs font-semibold px-3 py-1
-                               rounded-full ${getStatusColor(order.status)}`}>
-                {order.status}
-              </span>
+              <div className="flex items-center gap-2">
+                <span className={`text-xs font-semibold px-3 py-1
+                                 rounded-full ${getStatusColor(order.status)}`}>
+                  {order.status}
+                </span>
+                {order.status.includes("Pending") && (
+                  <button
+                    onClick={() => cancelOrder(order._id)}
+                    className="text-xs font-semibold px-3 py-1 rounded-full
+                               bg-red-50 text-red-500 border border-red-300
+                               hover:bg-red-100 transition"
+                  >
+                    Cancel order
+                  </button>
+                )}
+              </div>
             </div>
 
-            {/* Product Info */}
             <div className="flex gap-4 items-center">
               <div className="w-20 h-20 bg-gray-50 rounded-xl
                               flex items-center justify-center shrink-0">
-                {order.productImage ? (
+                {order.products?.[0]?.image ? (
                   <img
-                    src={`http://localhost:5002${order.productImage}`}
-                    alt={order.productName}
+                    src={`http://localhost:5002${order.products[0].image}`}
+                    alt={order.products[0].name}
                     className="w-16 h-16 object-contain"
                   />
                 ) : (
@@ -145,18 +157,22 @@ export default function Orders() {
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-800">
-                  {order.productName}
+                  {order.products?.[0]?.name}
+                  {order.products?.length > 1 && (
+                    <span className="text-sm text-gray-400 ml-1">
+                      +{order.products.length - 1} more
+                    </span>
+                  )}
                 </h3>
                 <p className="text-sm text-gray-500 mt-1">
-                  Qty: {order.quantity} × ₹ {order.price?.toLocaleString("en-IN")}
+                  Total Items: {order.totalItems}
                 </p>
                 <p className="text-red-500 font-bold mt-1">
-                  Total: ₹ {order.totalAmount?.toLocaleString("en-IN")}
+                  Total: ₹ {order.totalPrice?.toLocaleString("en-IN")}
                 </p>
               </div>
             </div>
 
-            {/* Delivery + Payment Info */}
             <div className="mt-4 pt-3 border-t border-gray-100
                             grid grid-cols-1 sm:grid-cols-3 gap-3">
               <div>

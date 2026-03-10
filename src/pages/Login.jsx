@@ -57,15 +57,12 @@ export default function Login({ setIsLoggedIn }) {
       style={{ backgroundImage: "url('/src/assets/95cdfeef.avif')" }}
     >
 
-      {/* Overlay */}
       <div className="absolute inset-0 bg-black/30" />
 
-      {/* Card */}
       <div className="relative z-10 bg-white/95 backdrop-blur-sm
                       rounded-2xl shadow-2xl
                       w-full max-w-sm mx-4 p-8">
 
-        {/* Header */}
         <div className="text-center mb-6">
           <div className="text-4xl mb-2">📱</div>
           <h2 className="text-3xl font-bold text-gray-800">
@@ -77,7 +74,6 @@ export default function Login({ setIsLoggedIn }) {
           <div className="w-12 h-1 bg-red-500 rounded-full mx-auto mt-3" />
         </div>
 
-        {/* Form */}
         <div className="space-y-4">
 
           <div>
@@ -115,7 +111,6 @@ export default function Login({ setIsLoggedIn }) {
 
         </div>
 
-        {/* Login Button */}
         <button
           onClick={handleLogin}
           disabled={loading}
@@ -126,7 +121,6 @@ export default function Login({ setIsLoggedIn }) {
           {loading ? "Logging in..." : "Login"}
         </button>
 
-        {/* Register link */}
         <p className="text-center text-sm text-gray-500 mt-4">
           Don't have an account?{" "}
           <span

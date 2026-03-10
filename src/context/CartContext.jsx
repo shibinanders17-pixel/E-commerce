@@ -1,17 +1,13 @@
-
-
 import { createContext, useEffect, useState } from "react";
 import api from "../services/api";
 
 export const CartContext = createContext();
 
 export default function CartProvider({ children }) {
-
   const [cart, setCart] = useState([]);
 
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
-  // ─── Fetch cart from DB on login ──────────────────────────
   useEffect(() => {
     if (isLoggedIn) {
       fetchCart();
@@ -21,11 +17,8 @@ export default function CartProvider({ children }) {
   }, [isLoggedIn]);
 
   const fetchCart = async () => {
-    const token = localStorage.getItem("token");
     try {
-      const res = await api.get("/users/cart", {
-        headers: { Authorization: token }
-      });
+      const res = await api.get("/users/cart");
       const mapped = res.data.map(item => ({
         _id:   item.productId,
         name:  item.name,
@@ -40,7 +33,6 @@ export default function CartProvider({ children }) {
   };
 
   const addToCart = async (product) => {
-    const token = localStorage.getItem("token");
     try {
       await api.post("/users/cart", {
         productId: product._id,
@@ -48,21 +40,16 @@ export default function CartProvider({ children }) {
         price:     product.price,
         image:     product.image,
         qty:       1
-      }, {
-        headers: { Authorization: token }
       });
       setCart(prev => [...prev, { ...product, qty: 1 }]);
     } catch (error) {
       console.log("Add to cart error:", error);
     }
-  };
+  }; 
 
   const removeFromCart = async (id) => {
-    const token = localStorage.getItem("token");
     try {
-      await api.delete(`/users/cart/${id}`, {
-        headers: { Authorization: token }
-      });
+      await api.delete(`/users/cart/${id}`);
       setCart(prev => prev.filter(item => item._id !== id));
     } catch (error) {
       console.log("Remove from cart error:", error);
@@ -70,14 +57,11 @@ export default function CartProvider({ children }) {
   };
 
   const increaseQty = async (id) => {
-    const token = localStorage.getItem("token");
     const item = cart.find(i => i._id === id);
     if (!item) return;
     const newQty = item.qty + 1;
     try {
-      await api.put(`/users/cart/${id}`, { qty: newQty }, {
-        headers: { Authorization: token }
-      });
+      await api.put(`/users/cart/${id}`, { qty: newQty });
       setCart(prev =>
         prev.map(i => i._id === id ? { ...i, qty: newQty } : i)
       );
@@ -87,14 +71,11 @@ export default function CartProvider({ children }) {
   };
 
   const decreaseQty = async (id) => {
-    const token = localStorage.getItem("token");
     const item = cart.find(i => i._id === id);
     if (!item) return;
     const newQty = item.qty - 1;
     try {
-      await api.put(`/users/cart/${id}`, { qty: newQty }, {
-        headers: { Authorization: token }
-      });
+      await api.put(`/users/cart/${id}`, { qty: newQty });
       if (newQty <= 0) {
         setCart(prev => prev.filter(i => i._id !== id));
       } else {

@@ -1,5 +1,3 @@
-
-
 import { useEffect, useState, useContext } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import api from "../services/api";
@@ -85,19 +83,16 @@ export default function Products() {
   return (
     <div className="bg-gray-100 min-h-screen">
 
-      {/* Banner */}
       <div className="px-4 md:px-8 pt-4">
         <img src="/images/pic21.webp"
-          className="w-full h-72 md:h-138 rounded-xl object-fill" alt="Banner" />
+          className="w-full h-78 md:h-138 rounded-xl object-fill" alt="Banner" />
       </div>
 
-      {/* Brands strip */}
       <div className="px-4 md:px-8 mt-4">
         <img src="/images/Brands.jpg"
           className="w-full h-16 md:h-28 object-contain rounded-xl bg-white px-4 py-2" alt="Brands" />
       </div>
 
-      {/* Category Filter */}
       <div className="px-4 md:px-8 mt-4">
         <div className="bg-white rounded-xl shadow-sm px-4 py-3 flex gap-3 overflow-x-auto scrollbar-hide">
           {categories.map((category) => (
@@ -115,7 +110,6 @@ export default function Products() {
         </div>
       </div>
 
-      {/* Sort By + Title */}
       <div className="px-4 md:px-8 mt-4 mb-3 bg-white rounded-xl shadow-sm py-3
                       flex flex-wrap items-center justify-between gap-3">
 
@@ -128,7 +122,7 @@ export default function Products() {
           </h2>
         </div>
 
-        {/* Sort By */}
+
         <div className="flex items-center gap-2 flex-wrap">
           <span className="text-sm text-gray-500 font-medium">Sort By:</span>
           {sortOptions.map((option) => (
@@ -147,7 +141,7 @@ export default function Products() {
 
       </div>
 
-      {/* Products List - Flipkart style */}
+ 
       <div className="px-4 md:px-8 pb-10">
 
         {sortedProducts.length === 0 ? (
@@ -178,7 +172,7 @@ export default function Products() {
                              flex flex-col sm:flex-row gap-4 p-4 md:p-5"
                 >
 
-                  {/* Image */}
+
                   <Link to={`/productsDet/${product._id}`} className="shrink-0">
                     <div className="w-full sm:w-48 h-48 flex items-center
                                     justify-center bg-gray-50 rounded-xl">
@@ -191,7 +185,6 @@ export default function Products() {
                     </div>
                   </Link>
 
-                  {/* Middle - Details */}
                   <div className="flex-1 min-w-0">
 
                     <Link to={`/productsDet/${product._id}`}>
@@ -201,7 +194,7 @@ export default function Products() {
                       </h3>
                     </Link>
 
-                    {/* Rating */}
+         
                     <div className="flex items-center gap-2 mb-3">
                       <span className="bg-green-600 text-white text-xs
                                        font-bold px-2 py-0.5 rounded flex items-center gap-1">
@@ -212,7 +205,7 @@ export default function Products() {
                       </span>
                     </div>
 
-                    {/* Specs */}
+
                     {specs.length > 0 && (
                       <ul className="space-y-1 mb-3">
                         {specs.map((spec, i) => (
@@ -225,7 +218,7 @@ export default function Products() {
                       </ul>
                     )}
 
-                    {/* Category badge */}
+      
                     {product.category && (
                       <span className="inline-block bg-red-50 text-red-500
                                        text-xs font-semibold px-2 py-0.5
@@ -236,11 +229,11 @@ export default function Products() {
 
                   </div>
 
-                  {/* Right - Price + Buttons */}
+      
                   <div className="flex flex-col sm:items-end justify-between
                                   sm:min-w-45 gap-3">
 
-                    {/* Price */}
+
                     <div className="sm:text-right">
                       <p className="text-2xl font-bold text-gray-900">
                         ₹{product.price.toLocaleString("en-IN")}
@@ -259,10 +252,10 @@ export default function Products() {
                       )}
                     </div>
 
-                    {/* Buttons */}
+      
                     <div className="flex flex-col gap-2 w-full">
 
-                      {/* Wishlist */}
+
                       <button
                         onClick={() => handleWishlist(product)}
                         className={`flex items-center justify-center gap-1.5
@@ -281,7 +274,7 @@ export default function Products() {
                         {wishlisted ? "Wishlisted ♥" : "Wishlist"}
                       </button>
 
-                      {/* Add to Cart */}
+         
                       <button
                         onClick={() => handleAddToCart(product, isInCart)}
                         className={`w-full py-2 rounded-lg text-sm font-semibold
@@ -293,7 +286,7 @@ export default function Products() {
                         {isInCart ? "Added ✓" : "Add to Cart"}
                       </button>
 
-                      {/* Buy Now */}
+     
                       <button
                         onClick={() => handleBuyNow(product)}
                         className="w-full py-2 rounded-lg text-sm font-semibold

@@ -69,15 +69,12 @@ export default function Register() {
       style={{ backgroundImage: "url('/src/assets/95cdfeef.avif')" }}
     >
 
-      {/* Overlay */}
       <div className="absolute inset-0 bg-black/30" />
 
-      {/* Card */}
       <div className="relative z-10 bg-white/95 backdrop-blur-sm
                       rounded-2xl shadow-2xl
                       w-full max-w-md mx-4 p-8">
 
-        {/* Header */}
         <div className="text-center mb-6">
           <h2 className="text-3xl font-bold text-gray-800">
             Create Account
@@ -88,10 +85,8 @@ export default function Register() {
           <div className="w-12 h-1 bg-red-500 rounded-full mx-auto mt-3" />
         </div>
 
-        {/* Form */}
         <div className="space-y-3">
 
-          {/* Name row */}
           <div className="flex gap-3">
             <input
               type="text"
@@ -182,7 +177,6 @@ export default function Register() {
 
         </div>
 
-        {/* Register Button */}
         <button
           onClick={handleRegister}
           disabled={loading}
@@ -193,7 +187,6 @@ export default function Register() {
           {loading ? "Creating account..." : "Create Account"}
         </button>
 
-        {/* Login link */}
         <p className="text-center text-sm text-gray-500 mt-4">
           Already have an account?{" "}
           <span
