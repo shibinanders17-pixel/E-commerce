@@ -16,10 +16,10 @@ export default function ProductsDetails() {
   const [selectedView, setSelectedView] = useState(0);
 
   const imageViews = [
-    { transform: "scale-100",                         label: "Front" },
-    { transform: "scale-150",                         label: "Zoom"  },
-    { transform: "scale-150 translate-x-8",           label: "Right" },
-    { transform: "scale-150 -translate-x-8",          label: "Left"  },
+    { transform: "scale-100",                   label: "Front" },
+    { transform: "scale-150",                   label: "Zoom"  },
+    { transform: "scale-150 translate-x-8",     label: "Right" },
+    { transform: "scale-150 -translate-x-8",    label: "Left"  },
   ];
 
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";

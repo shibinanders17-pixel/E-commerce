@@ -1,5 +1,4 @@
 
-
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import api from "../services/api";
@@ -87,7 +86,6 @@ export default function Checkout() {
     } finally {
       setLoading(false);
     }
-
   };
 
   const paymentOptions = [
