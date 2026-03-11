@@ -1,13 +1,9 @@
-
-
 import axios from "axios";
 
 const api = axios.create({
   baseURL: "http://localhost:5002/api"
 });
 
-
-// 🔐 Automatically attach JWT token to every request
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -21,8 +17,6 @@ api.interceptors.request.use(
   }
 );
 
-
-// ❌ Handle unauthorized responses
 api.interceptors.response.use(
   (response) => response,
   (error) => {

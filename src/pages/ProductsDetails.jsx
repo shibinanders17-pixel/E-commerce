@@ -25,19 +25,17 @@ export default function ProductsDetails() {
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
   useEffect(() => {
-    const fetchProduct = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const res = await api.get(`/users/products/${id}`, {
-          headers: { Authorization: token }
-        });
-        setProduct(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchProduct();
-  }, [id]);
+  const fetchProduct = async () => {
+    try {
+      const res = await api.get(`/users/products/${id}`);
+      setProduct(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  fetchProduct();
+}, [id]);
+
 
   if (!product) {
     return (
