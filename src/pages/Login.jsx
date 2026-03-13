@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
-
 export default function Login({ setIsLoggedIn }) {
 
   const [email, setEmail] = useState("");
@@ -38,7 +37,7 @@ export default function Login({ setIsLoggedIn }) {
       localStorage.setItem("isLoggedIn", "true");
       setIsLoggedIn(true);
 
-      alert("Login successfully 🎉");
+      alert("login successfully 🎉")
       navigate("/");
 
     } catch (error) {
@@ -136,3 +135,4 @@ export default function Login({ setIsLoggedIn }) {
     </div>
   );
 }
+

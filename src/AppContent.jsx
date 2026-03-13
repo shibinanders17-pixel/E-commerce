@@ -41,6 +41,8 @@ export default function AppContent() {
     location.pathname === "/login" ||
     location.pathname === "/register";
 
+  const shouldHideFooter = location.pathname.startsWith("/admin");
+
   return (
     <SearchProvider>
       <WishlistProvider>
@@ -76,7 +78,7 @@ export default function AppContent() {
               </Route>
             </Route>
           </Routes>
-          <Footer />
+          {!shouldHideFooter && <Footer />}
         </CartProvider>
       </WishlistProvider>
     </SearchProvider>
