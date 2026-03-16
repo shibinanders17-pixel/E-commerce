@@ -91,7 +91,7 @@ export default function AdminDashboard() {
                        shadow-sm hover:shadow-md transition-shadow"
           >
             {/* Gradient Top */}
-            <div className={`bg-gradient-to-r ${card.bg} p-5`}>
+            <div className={`bg-linear-to-r ${card.bg} p-5`}>
               <div className="flex items-center justify-between">
                 <p className="text-white text-sm font-semibold opacity-90">
                   {card.title}

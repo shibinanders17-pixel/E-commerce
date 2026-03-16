@@ -1,6 +1,24 @@
+
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
+
+// ✅ Estimated delivery calculate pannuvom
+const getDeliveryInfo = (order) => {
+  const orderDate = new Date(order.purchaseDate);
+  const estimatedDate = new Date(orderDate);
+  estimatedDate.setDate(orderDate.getDate() + 5);
+  const formatted = estimatedDate.toLocaleDateString("en-IN", {
+    day: "numeric", month: "short", year: "numeric"
+  });
+
+  if (order.status.includes("Cancelled")) return null;
+  if (order.status.includes("Delivered"))
+    return { label: "✅ Delivered on", date: orderDate.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" }), color: "text-green-600" };
+  if (order.status.includes("Shipped"))
+    return { label: "🚚 Expected by", date: formatted, color: "text-blue-600" };
+  return { label: "📦 Estimated delivery", date: formatted, color: "text-orange-500" };
+};
 
 export default function Orders() {
 
@@ -30,11 +48,19 @@ export default function Orders() {
   };
 
   const cancelOrder = async (orderId) => {
+    if (!window.confirm("Cancel this order?")) return;
     try {
-      await api.put(`/users/orders/${orderId}/cancel`);
+      const res = await api.put(`/users/orders/${orderId}/cancel`);
+      const { paymentMethod, refundAmount } = res.data;
+      if (paymentMethod === "UPI" || paymentMethod === "Card") {
+        alert("Order cancelled! ✅ ₹" + refundAmount.toLocaleString("en-IN") + " refunded to your wallet 💰");
+      } else {
+        alert("Order cancelled! ✅ (COD order — no refund applicable)");
+      }
       fetchOrders();
     } catch (error) {
       console.log("Cancel error:", error);
+      alert("Failed to cancel order!");
     }
   };
 
@@ -172,6 +198,16 @@ export default function Orders() {
                 </p>
               </div>
             </div>
+
+            {/* ✅ Delivery Info */}
+            {getDeliveryInfo(order) && (
+              <div className="mt-3 px-3 py-2 bg-gray-50 rounded-xl
+                              flex items-center gap-2">
+                <span className={`text-xs font-semibold ${getDeliveryInfo(order).color}`}>
+                  {getDeliveryInfo(order).label}: {getDeliveryInfo(order).date}
+                </span>
+              </div>
+            )}
 
             <div className="mt-4 pt-3 border-t border-gray-100
                             grid grid-cols-1 sm:grid-cols-3 gap-3">

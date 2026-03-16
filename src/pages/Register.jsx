@@ -48,7 +48,7 @@ export default function Register() {
 
       if (res.data.status === "success") {
         alert("Registration successful 🎉");
-        navigate("/login");
+        navigate("/login", {replace : true});
       } else {
         alert("Registration failed");
       }

@@ -5,7 +5,9 @@ export default function AdminProtectedRoute() {
   const isAdminLoggedIn = localStorage.getItem("isAdminLoggedIn") === "true";
   const adminToken = localStorage.getItem("adminToken");
 
-  return (isAdminLoggedIn && adminToken)
-    ? <Outlet />
-    : <Navigate to="/admin" />;
+  if (!isAdminLoggedIn || !adminToken) {
+    return <Navigate to="/admin" replace />;
+  }
+
+  return <Outlet />;
 }

@@ -1,5 +1,4 @@
 
-
 import { useEffect, useState } from "react";
 import api from "../services/api";
 
@@ -20,6 +19,9 @@ const statusColors = {
 export default function AdminOrders() {
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchText, setSearchText] = useState("");
+  const [filterStatus, setFilterStatus] = useState("All");
+  const [filterPayment, setFilterPayment] = useState("All");
 
   useEffect(() => {
     fetchOrders();
@@ -45,6 +47,18 @@ export default function AdminOrders() {
     }
   };
 
+  // ✅ Frontend filter logic
+  const filteredOrders = orders.filter((order) => {
+    const matchSearch =
+      order.userName?.toLowerCase().includes(searchText.toLowerCase()) ||
+      order._id.slice(-6).toUpperCase().includes(searchText.toUpperCase());
+    const matchStatus =
+      filterStatus === "All" || order.status === filterStatus;
+    const matchPayment =
+      filterPayment === "All" || order.paymentMethod === filterPayment;
+    return matchSearch && matchStatus && matchPayment;
+  });
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[80vh]">
@@ -63,23 +77,65 @@ export default function AdminOrders() {
         <h1 className="text-2xl font-bold text-gray-800">Orders</h1>
       </div>
 
-      {/* Top Gradient Bar */}
+      {/* Top Gradient Bar — Search + Filters */}
       <div className="bg-linear-0 from-yellow-500 to-orange-500
-                      rounded-2xl p-5 mb-6 shadow-sm
-                      flex items-center justify-between">
-        <div>
-          <p className="text-white font-bold text-base">Orders List</p>
-          <p className="text-yellow-100 text-xs mt-0.5">
-            Manage and update order statuses
+                      rounded-2xl p-5 mb-6 shadow-sm">
+        <div className="flex flex-col md:flex-row gap-3 items-center">
+
+          {/* Search */}
+          <input
+            type="text"
+            placeholder="🔍 Search by name or order ID..."
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
+            className="px-4 py-2.5 rounded-xl text-sm outline-none
+                       bg-white text-gray-700 placeholder-gray-400
+                       border border-gray-200 w-full md:w-64
+                       focus:border-yellow-400 transition"
+          />
+
+          {/* Status Filter */}
+          <select
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value)}
+            className="px-4 py-2.5 rounded-xl text-sm outline-none
+                       bg-white text-gray-700
+                       border border-gray-200
+                       focus:border-yellow-400 transition"
+          >
+            <option value="All">All Status</option>
+            {STATUS_OPTIONS.map((s) => (
+              <option key={s} value={s}>{s}</option>
+            ))}
+          </select>
+
+          {/* Payment Filter */}
+          <select
+            value={filterPayment}
+            onChange={(e) => setFilterPayment(e.target.value)}
+            className="px-4 py-2.5 rounded-xl text-sm outline-none
+                       bg-white text-gray-700
+                       border border-gray-200
+                       focus:border-yellow-400 transition"
+          >
+            <option value="All">All Payments</option>
+            <option value="UPI">UPI</option>
+            <option value="Card">Card</option>
+            <option value="COD">COD</option>
+          </select>
+
+          {/* Results count */}
+          <p className="text-white text-xs font-semibold md:ml-auto whitespace-nowrap">
+            {filteredOrders.length} orders found
           </p>
+
         </div>
-        <span className="text-4xl">🛒</span>
       </div>
 
       {/* Table */}
-      {orders.length === 0 ? (
+      {filteredOrders.length === 0 ? (
         <div className="bg-white rounded-2xl shadow-sm p-10 text-center">
-          <p className="text-gray-400 text-lg">No orders placed yet!</p>
+          <p className="text-gray-400 text-lg">No orders found!</p>
         </div>
       ) : (
         <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
@@ -105,16 +161,14 @@ export default function AdminOrders() {
               </thead>
 
               <tbody>
-                {orders.map((order) => (
+                {filteredOrders.map((order) => (
                   <tr key={order._id}
                     className="border-b hover:bg-gray-50 transition">
 
-                    {/* Order ID */}
                     <td className="px-4 py-3 text-xs text-gray-400 font-mono">
                       #{order._id.slice(-6).toUpperCase()}
                     </td>
 
-                    {/* Customer */}
                     <td className="px-4 py-3">
                       <p className="text-sm font-semibold text-gray-800">
                         {order.userName}
@@ -122,7 +176,6 @@ export default function AdminOrders() {
                       <p className="text-xs text-gray-400">{order.phone}</p>
                     </td>
 
-                    {/* Products */}
                     <td className="px-4 py-3">
                       <p className="text-sm text-gray-700">
                         {order.products?.[0]?.name}
@@ -134,12 +187,10 @@ export default function AdminOrders() {
                       )}
                     </td>
 
-                    {/* Total */}
                     <td className="px-4 py-3 text-sm font-bold text-gray-800">
                       ₹ {order.totalPrice?.toLocaleString("en-IN")}
                     </td>
 
-                    {/* Payment */}
                     <td className="px-4 py-3">
                       <span className="px-2 py-1 bg-gray-100 text-gray-600
                                        rounded-lg text-xs font-semibold">
@@ -147,12 +198,10 @@ export default function AdminOrders() {
                       </span>
                     </td>
 
-                    {/* Date */}
                     <td className="px-4 py-3 text-xs text-gray-500">
                       {new Date(order.purchaseDate).toLocaleDateString("en-IN")}
                     </td>
 
-                    {/* Status Dropdown */}
                     <td className="px-4 py-3">
                       <select
                         value={order.status}

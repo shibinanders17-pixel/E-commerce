@@ -12,10 +12,12 @@ import Success from "./pages/Success";
 import Wishlist from "./pages/Wishlist";
 import Orders from "./pages/Orders";
 import Footer from "./components/Footer";
+import Profile from "./pages/Profile";
 
 import CartProvider from "./context/CartContext";
 import SearchProvider from "./context/SearchContext";
 import WishlistProvider from "./context/WishlistContext";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 import AdminLogin from "./admin/AdminLogin";
 import AdminProtectedRoute from "./admin/AdminProtectedRoute";
@@ -29,45 +31,45 @@ import UserDetails from "./admin/UserDetails";
 import AdminOrders from "./admin/AdminOrders";
 
 export default function AppContent() {
-
   const [isLoggedIn, setIsLoggedIn] = useState(
     localStorage.getItem("isLoggedIn") === "true"
   );
-
   const location = useLocation();
 
   const shouldHideNavbar =
     location.pathname.startsWith("/admin") ||
     location.pathname === "/login" ||
     location.pathname === "/register";
-
+    
   const shouldHideFooter = location.pathname.startsWith("/admin");
 
   return (
     <SearchProvider>
       <WishlistProvider>
         <CartProvider>
-
           {!shouldHideNavbar ? (
             <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
           ) : null}
-
           <Routes>
+            {/* ─── User Routes ──────────────────────────── */}
             <Route path="/" element={<Products />} />
             <Route path="/productsDet/:id" element={<ProductsDetails />} />
-            <Route path="/cart" element={<Cart />} />
-            <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
             <Route path="/register" element={<Register />} />
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/success" element={<Success />} />
-            <Route path="/orders" element={<Orders />} />
-            
 
+            {/* ─── Protected User Routes ────────────────── */}
+            <Route path="/cart" element={<ProtectedRoutes><Cart /></ProtectedRoutes>} />
+            <Route path="/wishlist" element={<ProtectedRoutes><Wishlist /></ProtectedRoutes>} />
+            <Route path="/checkout/product/:id" element={<ProtectedRoutes><Checkout /></ProtectedRoutes>} />
+            <Route path="/checkout/cart" element={<ProtectedRoutes><Checkout /></ProtectedRoutes>} />
+            <Route path="/success" element={<ProtectedRoutes><Success /></ProtectedRoutes>} />
+            <Route path="/orders" element={<ProtectedRoutes><Orders /></ProtectedRoutes>} />
+            <Route path="/profile" element={<ProtectedRoutes><Profile /></ProtectedRoutes>} />
+
+            {/* ─── Admin Routes ─────────────────────────── */}
             <Route path="/admin" element={<AdminLogin />} />
-
-            <Route element={<AdminProtectedRoute />}>
-              <Route path="admin" element={<AdminLayout />}>
+            <Route path="/admin/*" element={<AdminProtectedRoute />}>
+              <Route element={<AdminLayout />}>
                 <Route path="dashboard" element={<AdminDashboard />} />
                 <Route path="products-man" element={<ProductManager />} />
                 <Route path="add-product" element={<AddProduct />} />
@@ -77,6 +79,19 @@ export default function AppContent() {
                 <Route path="orders" element={<AdminOrders />} />
               </Route>
             </Route>
+            <Route path="*" element={
+                   <div className="min-h-screen flex flex-col
+                    items-center justify-center">
+                        <p className="text-6xl font-bold text-gray-300">404</p>
+                        <p className="text-gray-500 mt-2">Page not found!</p>
+                   <button onClick={() => window.location.href = "/"}
+                         className="mt-4 px-6 py-2 bg-red-500 text-white
+                                    rounded-xl font-semibold hover:bg-red-600"
+                   >
+                       Go Home
+                   </button>
+                  </div>
+            } />
           </Routes>
           {!shouldHideFooter && <Footer />}
         </CartProvider>
