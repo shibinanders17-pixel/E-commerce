@@ -1,5 +1,3 @@
-
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
@@ -9,20 +7,12 @@ export default function AddProduct() {
   const [loading, setLoading] = useState(false);
   const [imageFile, setImageFile] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
-
-  const [form, setForm] = useState({
-    name: "",
-    price: "",
-    originalPrice: "",
-    image: "",
-    specs: "",
-    description: "",
-    category: "",
-  });
-
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+  const [name, setName]                 = useState("");
+  const [price, setPrice]               = useState("");
+  const [originalPrice, setOriginalPrice] = useState("");
+  const [specs, setSpecs]               = useState("");
+  const [description, setDescription]   = useState("");
+  const [category, setCategory]         = useState("");
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -34,7 +24,6 @@ export default function AddProduct() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { name, price, specs, description, category } = form;
 
     if (!name || !price || !specs || !description || !category || !imageFile) {
       alert("All fields are required!");
@@ -52,13 +41,16 @@ export default function AddProduct() {
 
       // Step 2 — Product create pannuvom
       await api.post("/admin/products", {
-        ...form,
+        name,
+        price: Number(price),
+        originalPrice: Number(originalPrice) || undefined,
         image: imagePath,
-        price: Number(form.price),
-        originalPrice: Number(form.originalPrice) || undefined,
+        specs,
+        description,
+        category,
       });
 
-      alert("Product Added Successfully 🔥");
+      alert("Product Added Successfully ");
       navigate("/admin/products-man");
     } catch (error) {
       console.log(error);
@@ -106,9 +98,8 @@ export default function AddProduct() {
               </label>
               <input
                 type="text"
-                name="name"
-                value={form.name}
-                onChange={handleChange}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. iPhone 15 Pro"
                 className="w-full mt-1.5 px-4 py-2.5 border border-gray-400
                            rounded-xl text-sm outline-none
@@ -126,9 +117,8 @@ export default function AddProduct() {
                 </label>
                 <input
                   type="number"
-                  name="price"
-                  value={form.price}
-                  onChange={handleChange}
+                  value={price}
+                  onChange={(e) => setPrice(e.target.value)}
                   placeholder="e.g. 129999"
                   className="w-full mt-1.5 px-4 py-2.5 border border-gray-400
                              rounded-xl text-sm outline-none
@@ -146,9 +136,8 @@ export default function AddProduct() {
                 </label>
                 <input
                   type="number"
-                  name="originalPrice"
-                  value={form.originalPrice}
-                  onChange={handleChange}
+                  value={originalPrice}
+                  onChange={(e) => setOriginalPrice(e.target.value)}
                   placeholder="e.g. 139999"
                   className="w-full mt-1.5 px-4 py-2.5 border border-gray-400
                              rounded-xl text-sm outline-none
@@ -165,9 +154,8 @@ export default function AddProduct() {
                 Category
               </label>
               <select
-                name="category"
-                value={form.category}
-                onChange={handleChange}
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
                 className="w-full mt-1.5 px-4 py-2.5 border border-gray-200
                            rounded-xl text-sm outline-none
                            focus:border-blue-400 focus:ring-2 focus:ring-blue-100
@@ -253,10 +241,9 @@ export default function AddProduct() {
                 Specs
               </label>
               <textarea
-                name="specs"
                 rows="3"
-                value={form.specs}
-                onChange={handleChange}
+                value={specs}
+                onChange={(e) => setSpecs(e.target.value)}
                 placeholder="e.g. 6.1 inch display, 128GB storage, 12MP camera..."
                 className="w-full mt-1.5 px-4 py-2.5 border border-gray-400
                            rounded-xl text-sm outline-none
@@ -271,10 +258,9 @@ export default function AddProduct() {
                 Description
               </label>
               <textarea
-                name="description"
                 rows="4"
-                value={form.description}
-                onChange={handleChange}
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
                 placeholder="Write a detailed product description..."
                 className="w-full mt-1.5 px-4 py-2.5 border border-gray-400
                            rounded-xl text-sm outline-none

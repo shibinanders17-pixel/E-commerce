@@ -43,7 +43,6 @@ export default function Login({ setIsLoggedIn }) {
       navigate("/", { replace: true });
     } catch (error) {
       console.log(error);
-      // ✅ Backend la irundhu varra specific message show pannuvom
       const msg = error.response?.data?.message;
       if (msg) {
         alert(msg);

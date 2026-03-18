@@ -38,9 +38,11 @@ export default function AdminUsers() {
 
   // ✅ Search + Status filter
   const filteredUsers = users.filter((user) => {
+   
     const matchSearch =
       user.name?.toLowerCase().includes(searchText.toLowerCase()) ||
       user.username?.toLowerCase().includes(searchText.toLowerCase());
+
     const matchStatus =
       filterStatus === "All" ||
       (filterStatus === "Active" && !user.isBlocked) ||
