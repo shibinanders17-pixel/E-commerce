@@ -134,12 +134,6 @@ export default function Orders() {
       <div className="flex flex-col gap-4 max-w-4xl mx-auto">
 
         {orders.map((order, index) => (
-          // <div
-          //   key={order._id}
-          //   className="bg-white rounded-2xl shadow-sm p-5
-          //              hover:shadow-md transition-shadow"
-          // >
-
           <div
             key={order._id}
             onClick={() => navigate(`/orders/${order._id}`)}
