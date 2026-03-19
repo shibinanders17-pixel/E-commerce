@@ -20,7 +20,6 @@ export default function Checkout() {
   const [paymentMethod, setPaymentMethod] = useState("");
   const [loading, setLoading]             = useState(false);
   const [fetching, setFetching]           = useState(true);
-  // ✅ Wallet states
   const [walletBalance, setWalletBalance] = useState(0);
   const [useWallet, setUseWallet]         = useState(false);
 
@@ -376,4 +375,6 @@ export default function Checkout() {
     </div>
   );
 }
+
+
 

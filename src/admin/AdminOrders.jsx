@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 const STATUS_OPTIONS = [
@@ -17,6 +18,7 @@ const statusColors = {
 };
 
 export default function AdminOrders() {
+  const navigate = useNavigate(); 
   const [orders, setOrders] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
@@ -47,7 +49,7 @@ export default function AdminOrders() {
     }
   };
 
-  // ✅ Frontend filter logic
+  
   const filteredOrders = orders.filter((order) => {
     const matchSearch =
       order.userName?.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -162,8 +164,11 @@ export default function AdminOrders() {
 
               <tbody>
                 {filteredOrders.map((order) => (
+                  // <tr key={order._id}
+                  //   className="border-b hover:bg-gray-50 transition">
                   <tr key={order._id}
-                    className="border-b hover:bg-gray-50 transition">
+                      onClick={() => navigate(`/admin/orders/${order._id}`)}
+                      className="border-b hover:bg-gray-50 transition cursor-pointer">
 
                     <td className="px-4 py-3 text-xs text-gray-400 font-mono">
                       #{order._id.slice(-6).toUpperCase()}
@@ -207,7 +212,9 @@ export default function AdminOrders() {
                         value={order.status}
                         onChange={(e) =>
                           handleStatusUpdate(order._id, e.target.value)
+                          
                         }
+                        onClick={(e) => e.stopPropagation()}
                         className={`px-3 py-1.5 rounded-xl text-xs font-semibold
                                    outline-none border-0 cursor-pointer
                                    ${statusColors[order.status] ||

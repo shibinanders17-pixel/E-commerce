@@ -33,13 +33,13 @@ export default function AddProduct() {
     try {
       setLoading(true);
 
-      // Step 1 — Image upload pannuvom
+    
       const formData = new FormData();
       formData.append("image", imageFile);
       const uploadRes = await api.post("/admin/upload", formData);
       const imagePath = uploadRes.data.imagePath;
 
-      // Step 2 — Product create pannuvom
+  
       await api.post("/admin/products", {
         name,
         price: Number(price),
