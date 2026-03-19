@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
-// ✅ Estimated delivery calculate pannuvom
+// Estimated delivery calculate
 const getDeliveryInfo = (order) => {
   const orderDate = new Date(order.purchaseDate);
   const estimatedDate = new Date(orderDate);
@@ -134,11 +134,18 @@ export default function Orders() {
       <div className="flex flex-col gap-4 max-w-4xl mx-auto">
 
         {orders.map((order, index) => (
+          // <div
+          //   key={order._id}
+          //   className="bg-white rounded-2xl shadow-sm p-5
+          //              hover:shadow-md transition-shadow"
+          // >
+
           <div
             key={order._id}
+            onClick={() => navigate(`/orders/${order._id}`)}
             className="bg-white rounded-2xl shadow-sm p-5
-                       hover:shadow-md transition-shadow"
-          >
+             hover:shadow-md transition-shadow cursor-pointer"
+           >
 
             <div className="flex flex-wrap items-center justify-between
                             gap-3 mb-4 pb-3 border-b border-gray-100">

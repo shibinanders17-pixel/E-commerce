@@ -12,6 +12,7 @@ import Checkout from "./pages/Checkout";
 import Success from "./pages/Success";
 import Wishlist from "./pages/Wishlist";
 import Orders from "./pages/Orders";
+import OrderDetails from "./pages/OrderDetails";
 import Footer from "./components/Footer";
 import Profile from "./pages/Profile";
 
@@ -66,6 +67,7 @@ export default function AppContent() {
             <Route path="/checkout/cart" element={<ProtectedRoutes><Checkout /></ProtectedRoutes>} />
             <Route path="/success" element={<ProtectedRoutes><Success /></ProtectedRoutes>} />
             <Route path="/orders" element={<ProtectedRoutes><Orders /></ProtectedRoutes>} />
+            <Route path="/orders/:id" element={<ProtectedRoutes><OrderDetails /></ProtectedRoutes>} />
             <Route path="/profile" element={<ProtectedRoutes><Profile /></ProtectedRoutes>} />
 
             {/* ─── Admin Routes ─────────────────────────── */}

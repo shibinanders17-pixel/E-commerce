@@ -41,8 +41,10 @@ export default function Cart() {
   }
 
   const handleBuyNow = (item) => {
-    navigate(`/checkout/product/${item._id}`);
-  };
+  navigate(`/checkout/product/${item._id}`, { 
+    state: { qty: item.qty }
+  });
+};
 
   const handlePlaceOrder = () => {
     navigate("/checkout/cart");
