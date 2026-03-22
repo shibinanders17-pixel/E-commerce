@@ -1,6 +1,6 @@
 import { Routes, Route, useLocation } from "react-router-dom";
 import { useState } from "react";
-vhb
+vh
 import Navbar from "./components/Navbar";
 import Products from "./pages/Products";
 import ProductsDetails from "./pages/ProductsDetails";
