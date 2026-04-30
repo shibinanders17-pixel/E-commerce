@@ -17,28 +17,50 @@ const getFakeReviews = (id) => {
 
 export default function Products() {
 
-  const { cart, addToCart, removeFromCart } = useContext(CartContext);
-  const { searchText } = useContext(SearchContext);
+  const { cart, addToCart, removeFromCart }           = useContext(CartContext);
+  const { searchText }                                = useContext(SearchContext);
   const { isInWishlist, addToWishlist, removeFromWishlist } = useContext(WishlistContext);
 
   const navigate = useNavigate();
 
   const [products, setProducts]                 = useState([]);
+  const [categories, setCategories]             = useState(["All"]);
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy]                     = useState("relevance");
 
   const isLoggedIn = localStorage.getItem("isLoggedIn") === "true";
 
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await api.get("/users/products");
+        const res = await api.get("/users/products", {
+          params: {
+            search:   searchText,
+            category: selectedCategory,
+            sort:     sortBy
+          }
+        });
         setProducts(res.data);
       } catch (error) {
         console.log("Products fetch error:", error);
       }
     };
     fetchProducts();
+  }, [searchText, selectedCategory, sortBy]); 
+
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const res = await api.get("/users/products");
+        const cats = ["All", ...new Set(res.data.map(p => p.category).filter(Boolean))];
+        setCategories(cats);
+      } catch (error) {
+        console.log("Categories fetch error:", error);
+      }
+    };
+    fetchCategories();
   }, []);
 
   const handleAddToCart = (product, isInCart) => {
@@ -58,20 +80,10 @@ export default function Products() {
       : addToWishlist(product);
   };
 
-  const categories = ["All", ...new Set(products.map(p => p.category).filter(Boolean))];
-
-  const filteredProducts = products.filter((product) => {
-    const matchesSearch   = product.name.toLowerCase().includes(searchText.toLowerCase());
-    const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
-    return matchesSearch && matchesCategory;
-  });
-
-  const sortedProducts = [...filteredProducts].sort((a, b) => {
-    if (sortBy === "price-low")  return a.price - b.price;
-    if (sortBy === "price-high") return b.price - a.price;
-    if (sortBy === "rating")     return getFakeRating(b._id) - getFakeRating(a._id);
-    return 0;
-  });
+ 
+  const sortedProducts = sortBy === "rating"
+    ? [...products].sort((a, b) => getFakeRating(b._id) - getFakeRating(a._id))
+    : products;
 
   const sortOptions = [
     { value: "relevance",  label: "Relevance" },
@@ -122,7 +134,6 @@ export default function Products() {
           </h2>
         </div>
 
-
         <div className="flex items-center gap-2 flex-wrap">
           <span className="text-sm text-gray-500 font-medium">Sort By:</span>
           {sortOptions.map((option) => (
@@ -141,9 +152,7 @@ export default function Products() {
 
       </div>
 
- 
       <div className="px-4 md:px-8 pb-10">
-
         {sortedProducts.length === 0 ? (
           <div className="text-center py-20 text-gray-400">
             <p className="text-5xl mb-4">😕</p>
@@ -171,8 +180,6 @@ export default function Products() {
                              transition-shadow duration-200
                              flex flex-col sm:flex-row gap-4 p-4 md:p-5"
                 >
-
-
                   <Link to={`/productsDet/${product._id}`} className="shrink-0">
                     <div className="w-full sm:w-48 h-48 flex items-center
                                     justify-center bg-gray-50 rounded-xl">
@@ -186,7 +193,6 @@ export default function Products() {
                   </Link>
 
                   <div className="flex-1 min-w-0">
-
                     <Link to={`/productsDet/${product._id}`}>
                       <h3 className="text-base font-semibold text-blue-600
                                      hover:underline line-clamp-2 mb-1">
@@ -194,7 +200,6 @@ export default function Products() {
                       </h3>
                     </Link>
 
-         
                     <div className="flex items-center gap-2 mb-3">
                       <span className="bg-green-600 text-white text-xs
                                        font-bold px-2 py-0.5 rounded flex items-center gap-1">
@@ -204,7 +209,6 @@ export default function Products() {
                         {reviews.toLocaleString("en-IN")} Ratings
                       </span>
                     </div>
-
 
                     {specs.length > 0 && (
                       <ul className="space-y-1 mb-3">
@@ -218,7 +222,6 @@ export default function Products() {
                       </ul>
                     )}
 
-      
                     {product.category && (
                       <span className="inline-block bg-red-50 text-red-500
                                        text-xs font-semibold px-2 py-0.5
@@ -226,14 +229,10 @@ export default function Products() {
                         {product.category}
                       </span>
                     )}
-
                   </div>
 
-      
                   <div className="flex flex-col sm:items-end justify-between
                                   sm:min-w-45 gap-3">
-
-
                     <div className="sm:text-right">
                       <p className="text-2xl font-bold text-gray-900">
                         ₹{product.price.toLocaleString("en-IN")}
@@ -252,10 +251,7 @@ export default function Products() {
                       )}
                     </div>
 
-      
                     <div className="flex flex-col gap-2 w-full">
-
-
                       <button
                         onClick={() => handleWishlist(product)}
                         className={`flex items-center justify-center gap-1.5
@@ -274,7 +270,6 @@ export default function Products() {
                         {wishlisted ? "Wishlisted ♥" : "Wishlist"}
                       </button>
 
-         
                       <button
                         onClick={() => handleAddToCart(product, isInCart)}
                         className={`w-full py-2 rounded-lg text-sm font-semibold
@@ -286,7 +281,6 @@ export default function Products() {
                         {isInCart ? "Added ✓" : "Add to Cart"}
                       </button>
 
-     
                       <button
                         onClick={() => handleBuyNow(product)}
                         className="w-full py-2 rounded-lg text-sm font-semibold
@@ -294,19 +288,14 @@ export default function Products() {
                       >
                         Buy Now
                       </button>
-
                     </div>
-
                   </div>
-
                 </div>
               );
             })}
           </div>
         )}
-
       </div>
-
     </div>
   );
 }
